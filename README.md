@@ -1,5 +1,3 @@
-# Clase-UCEMA
-Repositorio para los proyectos de la clase de Agentes IA
 # Agente de búsqueda y postulación laboral
 
 ## Qué construí
