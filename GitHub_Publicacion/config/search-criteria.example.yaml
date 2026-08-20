@@ -1,0 +1,26 @@
+roles:
+  include:
+    - Total Rewards Director
+    - Compensation and Benefits Director
+    - HR Director
+    - Senior HR Manager
+  exclude: []
+
+location:
+  country: Argentina
+  preferred_city: Buenos Aires
+  work_modes:
+    - remote
+    - hybrid
+
+preferences:
+  travel_allowed: true
+  target_seniority:
+    - senior_manager
+    - director
+  minimum_compensation_improvement_percent: null
+
+application:
+  require_review_before_submit: true
+  fabricate_information: false
+
