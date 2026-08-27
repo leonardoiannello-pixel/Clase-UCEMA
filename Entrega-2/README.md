@@ -67,14 +67,14 @@ Definí que:
 
 Esta corrida eliminó los decimales técnicos y produjo archivos más utilizables. Team Alpha consumió exactamente su budget y Team Beta quedó con un remanente de ARS 1.500 porque `X = 4.33%` excedía el límite después del redondeo y tuvo que reducirse a `4.32%`.
 
-Los prompts completos utilizados en cada corrida se encuentran en la carpeta Entrega-2/prompts, preservados textualmente para permitir la trazabilidad de las iteraciones.
+Los prompts completos utilizados en cada corrida se encuentran en la carpeta [prompts](prompts), preservados textualmente para permitir la trazabilidad de las iteraciones.
 
-system_prompt_v1.md
-user_prompt_v1.md
-system_prompt_v2.md
-user_prompt_v2.md
-system_prompt_v3.md
-user_prompt_v3.md
+- [system_prompt_v1.md](prompts/system_prompt_v1.md)
+- [user_prompt_v1.md](prompts/user_prompt_v1.md)
+- [system_prompt_v2.md](prompts/system_prompt_v2.md)
+- [user_prompt_v2.md](prompts/user_prompt_v2.md)
+- [system_prompt_v3.md](prompts/system_prompt_v3.md)
+- [user_prompt_v3.md](prompts/user_prompt_v3.md)
 
 ## Qué funciona
 
