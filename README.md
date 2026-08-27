@@ -1,54 +1,114 @@
-# Agente de búsqueda y postulación laboral
+# Agente de revisión salarial
 
 ## Qué construí
 
-Construí con Codex un agente para asistir el proceso de búsqueda y postulación a empleos.
+Construí con ChatGPT y Codex un agente para asistir un ciclo de revisión salarial de empleados fuera de convenio.
 
-El agente parte de un CV base y de los criterios definidos por el usuario, analiza búsquedas laborales, evalúa su adecuación al perfil, identifica información que falta, prepara versiones del CV adaptadas a cada posición y permite llevar un registro de las postulaciones.
+La idea inicial era modelar un proceso más amplio que incluyera aumentos salariales y bono anual, pero para esta entrega decidí acotar el alcance al salary review. El agente toma tres archivos Excel de input: población, referencias de mercado y parámetros del ciclo. A partir de esa información identifica promociones y progresiones, calcula aumentos protegidos, mérito y mercado, determina un valor común de `X` por equipo y genera una propuesta de aumento que respeta el budget disponible.
 
-El diseño incorpora supervisión humana: el agente no debe inventar antecedentes y debe consultar cuando encuentra información ambigua o faltante. La intención original era llegar a automatizar también la postulación, pero esa parte todavía no está completamente implementada.
+El modelo utiliza información de mercado asociada a la posición destino/post-ciclo. Los compa-ratios utilizados para decidir el ajuste se calculan contra esa posición futura. Los líderes están identificados en la población pero se excluyen del cálculo y del archivo de su propio equipo.
+
+Para poder publicar y probar el proyecto sin utilizar información confidencial, trabajé con una población y referencias salariales completamente sintéticas.
 
 ## Cómo se lo pedí
 
-El trabajo comenzó con este pedido a Codex:
+El trabajo comenzó a partir de una tarea real y recurrente de Compensation: preparar propuestas de aumentos para distintos equipos respetando reglas de promoción, progresión, performance, mercado y un budget máximo de payroll.
 
-> ¿es posible crear un agente para que busque en linkedin y otros portales, identifique búsquedas alineadas con mi perfil, arme un cv adaptado sobre la base de mi información laboral real, me pida información complementaria que pueda ser útil para mejorar el CV y alinearlo mejor con la búsqueda, luego subir el CV en linkedin o en el portal de la empresa, completar todos los campos y enviar la postulación?
+Antes de escribir el prompt final fui acotando y formalizando el problema. La idea original incluía salary review y bono anual, pero decidí dejar el bono fuera de alcance. También limité la población a empleados fuera de convenio y definí que todos los inputs y outputs de negocio debían ser archivos Excel.
 
-A partir de ese pedido inicial fui agregando instrucciones y restricciones a medida que avanzaba el trabajo. Entre ellas, le pedí que:
+El contrato se separó en `system prompt` y `user prompt` y se estructuró con las seis piezas trabajadas en clase: rol, contexto, tarea, restricciones, formato y ejemplos.
 
-* analizara primero la Job Description y sus requisitos;
-* identificara keywords, hard skills, soft skills, seniority, alcance y responsabilidades;
-* utilizara únicamente experiencia real del CV base;
-* no inventara empresas, puestos, estudios, idiomas, herramientas, logros ni métricas;
-* hiciera preguntas cuando necesitara información adicional;
-* adaptara el CV al idioma de la búsqueda;
-* generara documentos utilizables para una postulación;
-* mantuviera supervisión humana antes de realizar acciones externas.
+Las principales reglas definidas fueron:
 
-Durante la preparación de esta entrega también le pedí que generara versiones anonimizadas de los CV para poder publicar el proyecto en un repositorio público sin exponer nombre, teléfono, correo electrónico ni perfil de LinkedIn.
+- todos los porcentajes de aumento son aditivos sobre el salario base de junio;
+- General Increase, Promotion Increase y Progression Increase son componentes protegidos;
+- una promoción implica cambio de rank y una progresión implica aumento de grade dentro del mismo rank;
+- si una persona recibe promoción o progresión no recibe aumento de mérito;
+- el mérito depende del performance rating y de un valor `X` común a cada equipo;
+- el ajuste de mercado depende del compa-ratio contra la referencia WTW de la posición destino;
+- el valor `X` se calcula para utilizar el máximo budget posible sin exceder el payroll autorizado;
+- si los componentes protegidos ya exceden el budget, `X = 0` y se informa la excepción;
+- los líderes se excluyen del payroll y del budget de su propio equipo.
+
+Para probar el agente construí tres archivos Excel sintéticos con 18 registros: 15 empleados y 3 líderes. La población fue diseñada deliberadamente para incluir casos normales y casos límite: promociones, progresiones, ratings de 1 a 5, distintos tramos de compa-ratio, valores exactamente en los límites 0.70, 0.80, 0.90 y 1.00, una referencia de mercado faltante, un equipo con budget cómodo, uno ajustado y otro donde los aumentos protegidos ya superaban el budget.
+
+Ejecuté tres corridas sobre exactamente los mismos inputs para poder comparar los resultados.
+
+### Corrida 1 — V1
+
+La primera versión aplicó la lógica básica de promociones, progresiones, mérito, mercado y budget.
+
+La corrida confirmó que el agente podía procesar la población, excluir líderes, identificar movimientos, detectar una referencia de mercado faltante y calcular un `X` por equipo. También detectó correctamente un equipo donde los componentes protegidos excedían el budget.
+
+La prueba mostró, sin embargo, que algunos empleados podían seguir recibiendo ajuste de mercado aunque el mérito ya hubiera cerrado o superado el gap contra mercado. También aparecieron valores con una precisión excesiva: salarios con centavos, porcentajes con muchos decimales y diferencias técnicas mínimas de budget.
+
+### Iteración 1 — V2
+
+Para la primera iteración modifiqué una sola pieza del contrato: **Restricciones y reglas de negocio — Mercado**.
+
+Primero aclaré una regla que había quedado ambigua: `Market_Job_Code` representa siempre la posición destino/post-ciclo. Por lo tanto, si una persona es promovida, todos los compa-ratios utilizados para decidir el ajuste se calculan contra la referencia de la nueva posición.
+
+Además, cambié la lógica para que el ajuste de mercado se determine después de considerar el mérito. Market sólo puede cubrir el gap que todavía existe contra compa-ratio 1.00 y nunca puede ser la causa de que el empleado supere la referencia de mercado.
+
+La consecuencia fue que casos como A003 y B003 dejaron de recibir aumento de mercado cuando el mérito ya los había llevado por encima de compa-ratio 1. El espacio de budget liberado se redistribuyó mediante un `X` mayor para el resto del equipo.
+
+### Iteración 2 — V3
+
+Para la segunda iteración volví a modificar solamente **Restricciones y reglas de negocio**, agregando una política explícita de redondeo y precisión.
+
+Definí que:
+
+- todos los salarios finales deben ser múltiplos exactos de ARS 100;
+- los porcentajes de aumento y `X` deben tener como máximo dos decimales;
+- los compa-ratios mantienen tres decimales;
+- el budget debe validarse contra los salarios finales ya redondeados;
+- si el redondeo de `X` provoca un exceso de budget, `X` se reduce en pasos de 0.01 puntos porcentuales hasta encontrar el máximo valor que respete el límite;
+- el redondeo de Market nunca puede violar el cap individual de mercado.
+
+Esta corrida eliminó los decimales técnicos y produjo archivos más utilizables. Team Alpha consumió exactamente su budget y Team Beta quedó con un remanente de ARS 1.500 porque `X = 4.33%` excedía el límite después del redondeo y tuvo que reducirse a `4.32%`.
 
 ## Qué funciona
 
-El agente ya cuenta con una lógica definida para analizar oportunidades laborales, trabajar a partir de información verificada del candidato, solicitar información adicional cuando sea necesaria y preparar materiales de postulación.
+La versión V3 procesa los tres equipos utilizando exclusivamente archivos Excel como inputs y outputs.
 
-También se definieron criterios configurables de búsqueda y una estructura para registrar las oportunidades y evitar duplicaciones.
+El agente:
 
-Para esta entrega probé además el proceso de anonimización de los CV. Codex generó versiones en español e inglés eliminando la información identificatoria y verificó tanto el contenido como los metadatos antes de su publicación.
+- excluye correctamente a los líderes de la población y del budget de su propio equipo;
+- identifica promociones y progresiones;
+- aplica componentes protegidos;
+- calcula mérito según performance;
+- calcula posición de mercado contra la referencia de la posición destino;
+- evita que el componente de mercado lleve a una persona por encima de la referencia;
+- detecta referencias de mercado faltantes sin inventar información;
+- calcula el máximo `X` compatible con el budget;
+- identifica cuando los componentes protegidos exceden el budget y calcula la excepción requerida;
+- genera un workbook por equipo con hojas `Detail` y `Summary`;
+- genera salarios finales múltiplos de ARS 100;
+- mantiene porcentajes con un máximo de dos decimales;
+- valida el budget usando los salarios finales redondeados.
 
-El repositorio contiene las instrucciones del agente, ejemplos de configuración y seguimiento y dos CV anonimizados que permiten mostrar el proyecto sin publicar información personal.
+Los mismos inputs se mantuvieron sin modificaciones durante las tres corridas para que los cambios pudieran atribuirse a las modificaciones del prompt y no a cambios en los datos.
 
 ## Qué falta o qué falló
 
-La idea original era que el agente pudiera completar el proceso de postulación de punta a punta. Esa parte todavía no funciona de manera general, porque las postulaciones pueden requerir distintos portales, autenticaciones, formularios y acciones externas.
+Quedaron deliberadamente fuera del alcance de esta entrega algunas funcionalidades que serían necesarias para utilizar el proceso completo en un ciclo real.
 
-También encontré una dificultad al intentar publicar el proyecto directamente desde Codex. Aunque Codex podía acceder al repositorio de GitHub, la integración tenía permiso de lectura pero no de escritura y devolvía el error `403: Resource not accessible by integration`.
+En una siguiente etapa quiero incorporar una columna de ajuste discrecional para que cada líder pueda redistribuir parte del aumento entre sus empleados sin exceder el budget total. El archivo debería mostrar en tiempo real cuánto budget queda disponible o cuánto se excedió.
 
-En lugar de quedar trabado intentando resolver la integración, descargué desde Codex los archivos preparados y los subí manualmente a GitHub desde el navegador. El problema de permisos de escritura entre Codex y GitHub queda pendiente para una siguiente iteración.
+También quiero que los archivos enviados a los líderes estén protegidos contra modificación, dejando editable únicamente la columna de ajuste discrecional, y que requieran contraseña para abrirlos.
+
+La población incluye a los líderes, pero ellos no deberían definir su propio salario. En una versión posterior el proceso deberá generar cortes individuales por equipo excluyendo al propio líder y un archivo separado para el CEO con las propuestas de todos los líderes, utilizando un budget específico para ese grupo.
+
+La V3 mantiene además algunos comportamientos detectados durante las pruebas que no eran necesarios para validar el objetivo de esta entrega, por ejemplo el tratamiento visual del budget disponible negativo en un equipo cuyo budget protegido ya fue excedido y la ubicación del flag `BUDGET_INSUFICIENTE`.
 
 ## Qué aprendí
 
-La principal conclusión fue que trabajar con un agente no consiste solamente en escribir un prompt y aceptar el primer resultado. El trabajo fue evolucionando al definir mejor el objetivo, agregar restricciones, revisar resultados y decidir qué acciones podían automatizarse y cuáles requerían supervisión humana.
+El principal aprendizaje fue que una tarea que para una persona de Compensation parece tener reglas conocidas contiene muchas decisiones implícitas que deben convertirse en instrucciones explícitas para que un agente pueda ejecutarla de manera consistente.
 
-También entendí la importancia de separar el contexto privado de lo que se publica: el agente necesita información real para trabajar bien, pero eso no significa que esa información deba formar parte del repositorio.
+La primera versión no falló porque el modelo no pudiera hacer los cálculos, sino porque la especificación todavía dejaba abiertas preguntas importantes: qué referencia de mercado usar después de una promoción, en qué momento medir el compa-ratio, cómo limitar el ajuste de mercado y cómo tratar la precisión y el redondeo.
 
-Finalmente, el problema con GitHub me mostró que una limitación técnica no necesariamente impide completar el objetivo. Cuando la integración automática no permitió publicar, pude cambiar el procedimiento y hacer manualmente ese paso sin descartar el trabajo realizado por el agente.
+Trabajar con el mismo dataset en tres corridas permitió ver con claridad el efecto de cada modificación. En lugar de reescribir el prompt completo ante cada problema, fui cambiando una sola parte del contrato, ejecutando nuevamente el mismo caso y comparando los resultados.
+
+También entendí que un output matemáticamente correcto no necesariamente es un output utilizable. Reglas operativas como redondear salarios, limitar decimales y validar el budget después del redondeo son parte de la especificación del entregable y no simples detalles de presentación.
+
+Finalmente, el ejercicio mostró la utilidad de diseñar datos sintéticos con casos límite conocidos. Eso permitió probar el comportamiento del agente sin exponer información salarial real y detectar problemas que probablemente no hubieran aparecido con un ejemplo demasiado simple.
