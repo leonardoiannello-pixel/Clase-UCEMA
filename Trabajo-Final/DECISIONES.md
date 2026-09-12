@@ -44,6 +44,7 @@ Reconstrucción basada en prompts, observaciones y artefactos conservados. No se
 | Revisión humana PR #4: budgets | Faltaba validar tipo, finitud y rango | Team/Leadership budgets numéricos, finitos y > -100% | Rechazo explícito y suite V4 de 20 tests. |
 | Paquete académico | El evaluador necesita contrato, evidencia y reproducción accesibles | Crear `Trabajo-Final/` con prompts finales, interfaz, documentación, corridas y catálogos | V1–V4 y sus outputs históricos permanecen preservados. Base: merge `2c55ad6fb9862203d534892e55087c4016479661`. |
 | Preparación de corridas | Antes de ejecutar no había evidencia final instrumentada | Crear plantillas explícitamente pendientes, sin convertir demos/tests en corridas inexistentes | Estado histórico preservado en commits previos; luego se ejecutaron las tres corridas finales. |
+| Auditoría económica posterior | Durante las corridas la salida del host no mostró modelo/tokens verificables | Inspeccionar únicamente metadata local posterior, sin reejecutar corridas ni estimar tokens | Se recuperó `gpt-6-astra`, effort `low` y usage real por turno; la evidencia se conserva separada porque mide el turno completo, no sólo el CLI. [Auditoría](docs/METADATA_USO_CODEX.md) |
 
 ## Tres corridas finales y la falla que produjo V4.1
 
@@ -73,8 +74,7 @@ Se ejecutó nuevamente `consolidate` utilizando **exactamente los mismos cuatro 
 - Formalizar identidad, autoridad y registro de aprobación final.
 - Implementar ACL, cifrado, almacenamiento y distribución segura antes de procesar información salarial real.
 - Medir tiempo humano y baseline manual si se quisiera demostrar ahorro/ROI.
-- Los tokens de las corridas permanecen no medidos porque Codex desktop no los expuso de forma verificable; no se reconstruyen retrospectivamente como hechos.
-- El modelo visible informado por el usuario fue `GPT-6 Astra Light`; esa identificación no aparece como metadata verificable del host dentro de las corridas.
+- La metadata de tokens recuperada corresponde al turno completo de Codex; no existe una partición verificable que aísle el consumo exclusivo de `generate`/`consolidate`.
 - Para la entrega final, promover el contenido a la raíz de un repositorio público autocontenido y eliminar dependencias de rutas hermanas.
 
 Las definiciones L0–L4 del [documento de supervisión](docs/SUPERVISION.md) son operativas para este trabajo. L2 describe la distribución efectiva de responsabilidades; no se atribuye una definición textual a material docente no adjuntado.
