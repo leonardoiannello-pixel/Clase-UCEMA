@@ -1,0 +1,36 @@
+{
+  "events": [
+    {
+      "group": "Team Beta",
+      "employee_id": "B004",
+      "flag": "MARKET_DATA_MISSING"
+    },
+    {
+      "group": "Team Gamma",
+      "employee_id": "C001",
+      "flag": "BUDGET_INSUFICIENTE"
+    },
+    {
+      "group": "Team Gamma",
+      "employee_id": "C002",
+      "flag": "BUDGET_INSUFICIENTE"
+    },
+    {
+      "group": "Team Gamma",
+      "employee_id": "C003",
+      "flag": "BUDGET_INSUFICIENTE"
+    },
+    {
+      "group": "Team Gamma",
+      "employee_id": "C004",
+      "flag": "BUDGET_INSUFICIENTE"
+    },
+    {
+      "group": "Team Gamma",
+      "employee_id": "C005",
+      "flag": "BUDGET_INSUFICIENTE"
+    }
+  ],
+  "state": "PENDING_HUMAN_REVIEW",
+  "synthetic": true
+}
