@@ -1,0 +1,33 @@
+{
+  "state": "PENDING_HUMAN_APPROVAL",
+  "errors": [],
+  "reviewed_files": [
+    {
+      "file": "team_L-A.xlsx",
+      "sha256": "32981d37adfca73f50e2cf561eee600f9fc4f56652c9979a10e775381bd28ccf",
+      "reviewer_id": "L-A"
+    },
+    {
+      "file": "leadership_review.xlsx",
+      "sha256": "f1d74d43c65cddeb2e2cfc804a43610c8d7782e9094956a303299a94d5b9d946",
+      "reviewer_id": "CEO001"
+    },
+    {
+      "file": "team_L-B.xlsx",
+      "sha256": "518518137c9f9d9601085f5cee3f4d380f699732e2ddc13bee8f76fc436f09cf",
+      "reviewer_id": "L-B"
+    },
+    {
+      "file": "team_L-C.xlsx",
+      "sha256": "0991a2cf510b127c88b4c070fd0d562f1ff56d51708e8422ceee9db7927dab0f",
+      "reviewer_id": "L-C"
+    },
+    {
+      "group": "Team Gamma",
+      "flag": "BUDGET_EXCEEDED",
+      "amount": 522000.0
+    }
+  ],
+  "manifest_sha256": "e6844f693990d4904b75c90705eadc19d0cc0d9962646c5dbdcd230580ba8352",
+  "final_sha256": "7bbb3b2750392fc4fcb7a16a88d0305e73f5e38703103f5744a54a09bee458f4"
+}
