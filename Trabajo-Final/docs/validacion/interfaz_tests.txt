@@ -1,0 +1,15 @@
+test_alternative_synthetic_input_is_used (test_interface.InterfaceTests.test_alternative_synthetic_input_is_used) ... ok
+test_consolidation_zero_adjustment_is_not_human_approval (test_interface.InterfaceTests.test_consolidation_zero_adjustment_is_not_human_approval) ... ok
+test_existing_output_not_overwritten (test_interface.InterfaceTests.test_existing_output_not_overwritten) ... ok
+test_historical_output_path_rejected (test_interface.InterfaceTests.test_historical_output_path_rejected) ... ok
+test_password_required_and_not_logged (test_interface.InterfaceTests.test_password_required_and_not_logged) ... ok
+test_report_truthful_and_payrolls (test_interface.InterfaceTests.test_report_truthful_and_payrolls) ... ok
+test_runtime_copies_exact_bytes (test_interface.InterfaceTests.test_runtime_copies_exact_bytes) ... ok
+test_synthetic_declaration_required (test_interface.InterfaceTests.test_synthetic_declaration_required) ... ok
+test_tampered_review_rejected (test_interface.InterfaceTests.test_tampered_review_rejected) ... ok
+test_verify_cli_json (test_interface.InterfaceTests.test_verify_cli_json) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 10.549s
+
+OK
