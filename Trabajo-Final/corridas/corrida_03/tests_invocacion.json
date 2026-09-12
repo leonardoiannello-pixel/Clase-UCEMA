@@ -1,0 +1,15 @@
+{
+  "argv": [
+    "C:\\Users\\Usuario\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "Trabajo-Final\\corridas\\corrida_03",
+    "-p",
+    "test_evidencia.py",
+    "-v"
+  ],
+  "exit_code": 0
+}

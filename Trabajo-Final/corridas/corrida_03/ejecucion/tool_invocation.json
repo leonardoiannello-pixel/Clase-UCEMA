@@ -1,0 +1,49 @@
+{
+  "command": [
+    "C:\\Users\\Usuario\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_03_consolidacion_20260912T225142227827Z\\runtime\\v4\\workflow_v41.py",
+    "consolidate",
+    "--output",
+    "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_03_consolidacion_20260912T225142227827Z\\artifacts",
+    "--original",
+    "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\corridas\\corrida_01\\ejecucion\\artifacts",
+    "--reviewed",
+    "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z"
+  ],
+  "shell": false,
+  "password_source": "environment; value not recorded",
+  "v4_copies": {
+    "workflow.py": {
+      "source": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Entrega-2\\v4\\workflow.py",
+      "sha256": "b2f1199ab733a14e851b5a5dc26682a4aa2a795caf531880191253def1f73a52"
+    },
+    "engine.py": {
+      "source": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Entrega-2\\v4\\engine.py",
+      "sha256": "2d0530e451f2f66abcfa78bd061ce4a38d22e45295f196432ae7cf81df288a65"
+    },
+    "protection.py": {
+      "source": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Entrega-2\\v4\\protection.py",
+      "sha256": "93873a6423e09206886c3b85b556d83cde4a1b74d7f7b8840901d47f5a061983"
+    },
+    "render.mjs": {
+      "source": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Entrega-2\\v4\\render.mjs",
+      "sha256": "8a4bc3e506850fd0bc5a1285b1167c92cf7b5e9f032bb869bcc4f0cfdfe798e9"
+    },
+    "requirements.txt": {
+      "source": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Entrega-2\\v4\\requirements.txt",
+      "sha256": "9bba605fd7b6ea23038de15e5a1ae6714b3d3fb14ed2d6e6bedbfb0665ca2122"
+    }
+  },
+  "v41_copies": {
+    "workflow_v41.py": {
+      "source": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\agente\\v41\\workflow_v41.py",
+      "sha256": "1f09908f11e300ce827ddc1aadf98003573227b781ade6a24708b3ca61604842"
+    },
+    "formula_equivalence.py": {
+      "source": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\agente\\v41\\formula_equivalence.py",
+      "sha256": "f449f3d7ad0b9d94da213907be4e0cc76934f0687657099da0fe68431b903292"
+    }
+  },
+  "workflow_version": "V4.1",
+  "llm_invoked": false
+}

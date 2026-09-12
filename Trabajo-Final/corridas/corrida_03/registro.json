@@ -1,28 +1,106 @@
 {
-  "estado": "PENDIENTE_NO_EJECUTADA",
-  "fecha_utc": null,
+  "estado": "CONSOLIDATED_WITH_EXCEPTIONS",
+  "fecha_utc": "2026-09-12T22:51:42.228825+00:00",
   "modelo": null,
   "proveedor": null,
   "system_prompt": {
-    "referencia_plantilla": "../../prompts/system_prompt.md",
-    "archivo_efectivamente_usado": null,
-    "sha256": null
+    "archivo_efectivamente_usado": "prompts/system_prompt.md",
+    "sha256": "8859dfb064b64bb4cff3028187a21e39c1ed6e518a0590ed44e5f38af9349809"
   },
   "user_prompt": {
-    "referencia_plantilla": "../../prompts/user_prompt.md",
-    "archivo_efectivamente_usado": null,
-    "sha256": null
+    "archivo_efectivamente_usado": "prompts/user_prompt.md",
+    "sha256": "0379558016db1c43c1dd58889fc7ed26f5afa01a5424b4705b0ed4d8ac7d012e"
   },
-  "inputs": [],
-  "tool_invocations": [],
-  "salida_del_agente": null,
-  "archivos_generados": [],
-  "excepciones": null,
+  "inputs": [
+    {
+      "tipo": "original_manifest",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\corridas\\corrida_01\\ejecucion\\artifacts\\manifest.json",
+      "sha256": "910bea47d1811351d22c51c38acb1805fa985fd282f80d18d3c07d52d1d1b737"
+    },
+    {
+      "tipo": "original_master",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\corridas\\corrida_01\\ejecucion\\artifacts\\master_proposal.xlsx",
+      "sha256": "a261508df718148fcaadefcce25b1ee8d49e7dc1e0c457d1310e30f2b9b57d3d"
+    },
+    {
+      "tipo": "reviewed/leadership_review.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\leadership_review.xlsx",
+      "sha256": "586e2b90ca466df3403d7a829876dd3ce1e11be6c622871c09d1392ed646a259"
+    },
+    {
+      "tipo": "reviewed/team_L-A.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-A.xlsx",
+      "sha256": "cad0aa6f7f871514ea45a9c197b8cb57884b0830915c90bbc55fc1add13708ba"
+    },
+    {
+      "tipo": "reviewed/team_L-B.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-B.xlsx",
+      "sha256": "40fa803a36d442b6d1c0ec22f6cc97051c45f34a87339fe93e3a6f1d656b564a"
+    },
+    {
+      "tipo": "reviewed/team_L-C.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-C.xlsx",
+      "sha256": "df85672740a96fe7bd0ba61a915a4506ba7de3aed74bb1c715e112aba30f2317"
+    }
+  ],
+  "tool_invocations": [
+    "cli_invocacion.json",
+    "ejecucion/tool_invocation.json"
+  ],
+  "salida_del_agente": "salida_agente.json",
+  "archivos_generados": [
+    {
+      "archivo": "artifacts\\consolidated_final.xlsx",
+      "sha256": "043ab2efec9ceae96b41276144951ba1756eb637a468037fcb40872226db10c3"
+    },
+    {
+      "archivo": "artifacts\\validation_exceptions.json",
+      "sha256": "f1287bb8d0f5835cb18cf634292bf45097a05ac9999160062b6806b487a6206c"
+    }
+  ],
+  "excepciones": [
+    {
+      "group": "Team Alpha",
+      "flag": "BUDGET_EXCEEDED",
+      "amount": 14000.0
+    },
+    {
+      "group": "Team Gamma",
+      "flag": "BUDGET_EXCEEDED",
+      "amount": 522000.0
+    },
+    {
+      "employee_id": "B004",
+      "flag": "MARKET_DATA_MISSING"
+    },
+    {
+      "employee_id": "C001",
+      "flag": "BUDGET_INSUFICIENTE"
+    },
+    {
+      "employee_id": "C002",
+      "flag": "BUDGET_INSUFICIENTE"
+    },
+    {
+      "employee_id": "C003",
+      "flag": "BUDGET_INSUFICIENTE"
+    },
+    {
+      "employee_id": "C004",
+      "flag": "BUDGET_INSUFICIENTE"
+    },
+    {
+      "employee_id": "C005",
+      "flag": "BUDGET_INSUFICIENTE"
+    }
+  ],
   "tokens": {
     "input_total": null,
     "input_cached": null,
     "output": null,
-    "fuente_medicion": null
+    "usage_metadata": null,
+    "fuente_medicion": null,
+    "motivo": "El host no expuso modelo exacto ni métricas de uso de manera verificable para esta corrida. No se estiman costos."
   },
   "precio": {
     "moneda": null,
@@ -35,7 +113,180 @@
   "costo_por_corrida": null,
   "frecuencia_anual": null,
   "proyeccion_anual": null,
-  "intervenciones_humanas": null,
-  "estado_aprobacion": null,
-  "observaciones": "Plantilla pendiente. No acredita ejecución, uso de modelo ni decisiones humanas."
+  "intervenciones_humanas": [
+    {
+      "intervencion_humana_real": true,
+      "fuente_declaracion": "Mensaje del usuario en esta conversación",
+      "archivo": "team_L-A.xlsx",
+      "employee_id": "A001",
+      "campo": "Discretionary Adjustment %",
+      "valor_observado": 0.01,
+      "unidad_almacenada": "fracción; multiplicar por 100 para puntos porcentuales",
+      "origen": "Edición manual en Excel fuera del agente, según declaración del usuario",
+      "decidida_por_agente": false,
+      "identidad_real": null,
+      "aclaracion": "La declaración humana y el valor observado son evidencias distintas. reviewer_id es routing sintético, no autenticación ni identidad real."
+    }
+  ],
+  "estado_aprobacion": "PENDING_HUMAN_APPROVAL",
+  "observaciones": "Consolidación real V4.1 con las mismas entradas de Corrida 2. Propuesta preservada; ajuste humano existente aplicado sólo a Final; excesos reportados sin corrección. Ver OBSERVACIONES.md.",
+  "ejecucion_real": true,
+  "operacion": "consolidate",
+  "fin_utc": "2026-09-12T22:51:45.932688+00:00",
+  "source_commit": "d3ff6413407c35f92619142de8e3b2d17baca7e6",
+  "workflow_version": "V4.1",
+  "host": "Codex desktop",
+  "host_metadata": "host_metadata.json",
+  "datos": "SINTETICOS",
+  "original_confiable": [
+    {
+      "archivo": "master_proposal.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\corridas\\corrida_01\\ejecucion\\artifacts\\master_proposal.xlsx",
+      "referencia": "../corrida_01/ejecucion/artifacts/master_proposal.xlsx",
+      "sha256": "a261508df718148fcaadefcce25b1ee8d49e7dc1e0c457d1310e30f2b9b57d3d"
+    },
+    {
+      "archivo": "manifest.json",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\corridas\\corrida_01\\ejecucion\\artifacts\\manifest.json",
+      "referencia": "../corrida_01/ejecucion/artifacts/manifest.json",
+      "sha256": "910bea47d1811351d22c51c38acb1805fa985fd282f80d18d3c07d52d1d1b737"
+    }
+  ],
+  "reviewed": [
+    {
+      "archivo": "team_L-A.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-A.xlsx",
+      "copia": "reviewed/team_L-A.xlsx",
+      "sha256": "cad0aa6f7f871514ea45a9c197b8cb57884b0830915c90bbc55fc1add13708ba",
+      "original_sha256": "1fd73ca9fa45f8a48e65f09c3f881e920adccda4f6c7188768e16aabb4b1da16",
+      "bytes_distintos_del_original": true,
+      "mismos_bytes_corrida02": true,
+      "referencia_corrida02": "../corrida_02/reviewed/team_L-A.xlsx"
+    },
+    {
+      "archivo": "team_L-B.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-B.xlsx",
+      "copia": "reviewed/team_L-B.xlsx",
+      "sha256": "40fa803a36d442b6d1c0ec22f6cc97051c45f34a87339fe93e3a6f1d656b564a",
+      "original_sha256": "40fa803a36d442b6d1c0ec22f6cc97051c45f34a87339fe93e3a6f1d656b564a",
+      "bytes_distintos_del_original": false,
+      "mismos_bytes_corrida02": true,
+      "referencia_corrida02": "../corrida_02/reviewed/team_L-B.xlsx"
+    },
+    {
+      "archivo": "team_L-C.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-C.xlsx",
+      "copia": "reviewed/team_L-C.xlsx",
+      "sha256": "df85672740a96fe7bd0ba61a915a4506ba7de3aed74bb1c715e112aba30f2317",
+      "original_sha256": "df85672740a96fe7bd0ba61a915a4506ba7de3aed74bb1c715e112aba30f2317",
+      "bytes_distintos_del_original": false,
+      "mismos_bytes_corrida02": true,
+      "referencia_corrida02": "../corrida_02/reviewed/team_L-C.xlsx"
+    },
+    {
+      "archivo": "leadership_review.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\leadership_review.xlsx",
+      "copia": "reviewed/leadership_review.xlsx",
+      "sha256": "586e2b90ca466df3403d7a829876dd3ce1e11be6c622871c09d1392ed646a259",
+      "original_sha256": "586e2b90ca466df3403d7a829876dd3ce1e11be6c622871c09d1392ed646a259",
+      "bytes_distintos_del_original": false,
+      "mismos_bytes_corrida02": true,
+      "referencia_corrida02": "../corrida_02/reviewed/leadership_review.xlsx"
+    }
+  ],
+  "reporte_herramienta": "ejecucion/reporte.json",
+  "budgets": [
+    {
+      "pool": "Team Alpha",
+      "payroll_june": 9000000,
+      "maximum_payroll": 11520000,
+      "proposed_payroll": 11520000,
+      "final_payroll": 11534000,
+      "budget_remaining": -14000,
+      "budget_status": "EXCEEDED"
+    },
+    {
+      "pool": "Leadership",
+      "payroll_june": 11700000,
+      "maximum_payroll": 14040000,
+      "proposed_payroll": 14038500,
+      "final_payroll": 14038500,
+      "budget_remaining": 1500,
+      "budget_status": "OK"
+    },
+    {
+      "pool": "Team Beta",
+      "payroll_june": 9100000,
+      "maximum_payroll": 10738000,
+      "proposed_payroll": 10736500,
+      "final_payroll": 10736500,
+      "budget_remaining": 1500,
+      "budget_status": "OK"
+    },
+    {
+      "pool": "Team Gamma",
+      "payroll_june": 8000000,
+      "maximum_payroll": 8800000,
+      "proposed_payroll": 9322000,
+      "final_payroll": 9322000,
+      "budget_remaining": -522000,
+      "budget_status": "EXCEEDED"
+    }
+  ],
+  "a001_observado": {
+    "Employee_ID": "A001",
+    "Team": "Team Alpha",
+    "Is_Leader": "NO",
+    "Leader_Employee_ID": "L-A",
+    "Population_Type": "Fuera de convenio",
+    "Currency": "ARS",
+    "June_Base_Salary": 1400000,
+    "Current_Rank": "Associate",
+    "Current_Grade": 1,
+    "New_Rank": "Associate",
+    "New_Grade": 1,
+    "Performance_Rating": 2,
+    "Market_Job_Code": "MKT_BOUNDARY",
+    "General_Increase_Pct": 0.08,
+    "Promotion_Increase_Pct": 0,
+    "Progression_Increase_Pct": 0,
+    "Protected_Increase_Pct": 0.08,
+    "Protected_Salary": 1512000,
+    "Merit_Weight": 0.5,
+    "WTW_Reference_Salary": 2160000,
+    "Initial_Compa_Ratio": 0.6481481481481481,
+    "Preliminary_Compa_Ratio": 0.7,
+    "Flag": null,
+    "X": 0.1176,
+    "Merit_Increase_Pct": 0.0588,
+    "Market_Weight": 2,
+    "Market_Increase_Pct": 0.2352,
+    "Proposed Salary": 1923600,
+    "Proposed Increase %": 0.374,
+    "Proposed Compa Ratio": 0.8905555555555555,
+    "Discretionary Adjustment %": 0.01,
+    "Final Increase %": 0.384,
+    "Final Salary": 1937600,
+    "Final Compa Ratio": 0.8970370370370371,
+    "Human_Modified": true,
+    "Reviewer_ID": "L-A",
+    "Approval_Status": "PENDING_HUMAN_APPROVAL"
+  },
+  "tests": {
+    "invocacion": "tests_invocacion.json",
+    "cantidad": 8,
+    "exit_code": 0,
+    "alcance": "Sólo lectura/consistencia, sin nuevas ejecuciones de workflow"
+  },
+  "validaciones": {
+    "falsos_positivos_corrida02_no_bloquean": true,
+    "proposed_intacto": true,
+    "ajuste_solo_final": true,
+    "budgets_recalculados": true,
+    "excesos_reportados_sin_correccion": true,
+    "reviewed_mismos_bytes_corrida02": true,
+    "aprobacion_pendiente": true,
+    "contrasena_en_claro_detectada": false,
+    "soporte": "test_evidencia.py, logs, control_password.json, control_integridad.json"
+  }
 }

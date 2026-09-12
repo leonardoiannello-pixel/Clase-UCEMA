@@ -1,0 +1,2 @@
+consolidated_final.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: C:\Users\Usuario\Documents\Codex\2026-09-12\files-pasted-by-the-user-estoy\work\Clase-UCEMA\Trabajo-Final\ejecuciones\corrida_03_consolidacion_20260912T225142227827Z\artifacts\consolidated_final.xlsx.inspect.ndjson

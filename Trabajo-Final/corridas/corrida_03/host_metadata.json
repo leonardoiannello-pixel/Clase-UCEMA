@@ -1,0 +1,15 @@
+{
+  "host": "Codex desktop",
+  "fuente": "Contexto de la aplicación en esta sesión",
+  "sistema_operativo": "Windows",
+  "python_version": "3.12.14",
+  "node_version": "v24.19.0",
+  "modelo": null,
+  "input_tokens": null,
+  "cached_input_tokens": null,
+  "output_tokens": null,
+  "usage_metadata": null,
+  "costo": null,
+  "motivo_null": "El host no expuso modelo exacto ni métricas de uso de manera verificable para esta corrida. No se estiman costos.",
+  "modo_prompts": "Leídos como instrucciones de tarea en la conversación existente; no sustituyen el system prompt del host. No se efectuó una nueva llamada API LLM."
+}

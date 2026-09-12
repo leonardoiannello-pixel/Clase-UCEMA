@@ -1,0 +1,24 @@
+{
+  "source_commit": "2c55ad6fb9862203d534892e55087c4016479661",
+  "path_base": "Trabajo-Final",
+  "files": {
+    "employees": {
+      "path": "../Entrega-2/inputs/Employees_Input.xlsx",
+      "kind": "synthetic_input",
+      "sha256": "ffbe3de403520874924bd4a696e3a78a5a76dfbc46790ab668248e03c64af628",
+      "hash_mode": "exact_bytes"
+    },
+    "market": {
+      "path": "../Entrega-2/inputs/Market_Data.xlsx",
+      "kind": "synthetic_input",
+      "sha256": "8c49c32e823ed0a788421cc7d535845cf1efe8a688b3b2d9b0e202efebf56079",
+      "hash_mode": "exact_bytes"
+    },
+    "parameters": {
+      "path": "../Entrega-2/v4/inputs/Parameters.xlsx",
+      "kind": "synthetic_demo_parameters",
+      "sha256": "8a23238cd3916de4049e27335ea1f229cad6bc4ecd4cea35bd6b39e5af63d5bc",
+      "hash_mode": "exact_bytes"
+    }
+  }
+}

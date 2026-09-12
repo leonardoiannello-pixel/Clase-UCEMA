@@ -1,0 +1,92 @@
+[
+  {
+    "archivo": "team_L-A.xlsx",
+    "employee_id": "A001",
+    "valor_observado": 0.01
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "employee_id": "A002",
+    "valor_observado": 0
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "employee_id": "A003",
+    "valor_observado": 0
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "employee_id": "A004",
+    "valor_observado": 0
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "employee_id": "A005",
+    "valor_observado": 0
+  },
+  {
+    "archivo": "team_L-B.xlsx",
+    "employee_id": "B001",
+    "valor_observado": 0
+  },
+  {
+    "archivo": "team_L-B.xlsx",
+    "employee_id": "B002",
+    "valor_observado": 0
+  },
+  {
+    "archivo": "team_L-B.xlsx",
+    "employee_id": "B003",
+    "valor_observado": 0
+  },
+  {
+    "archivo": "team_L-B.xlsx",
+    "employee_id": "B004",
+    "valor_observado": 0
+  },
+  {
+    "archivo": "team_L-B.xlsx",
+    "employee_id": "B005",
+    "valor_observado": 0
+  },
+  {
+    "archivo": "team_L-C.xlsx",
+    "employee_id": "C001",
+    "valor_observado": 0
+  },
+  {
+    "archivo": "team_L-C.xlsx",
+    "employee_id": "C002",
+    "valor_observado": 0
+  },
+  {
+    "archivo": "team_L-C.xlsx",
+    "employee_id": "C003",
+    "valor_observado": 0
+  },
+  {
+    "archivo": "team_L-C.xlsx",
+    "employee_id": "C004",
+    "valor_observado": 0
+  },
+  {
+    "archivo": "team_L-C.xlsx",
+    "employee_id": "C005",
+    "valor_observado": 0
+  },
+  {
+    "archivo": "leadership_review.xlsx",
+    "employee_id": "L-A",
+    "valor_observado": 0
+  },
+  {
+    "archivo": "leadership_review.xlsx",
+    "employee_id": "L-B",
+    "valor_observado": 0
+  },
+  {
+    "archivo": "leadership_review.xlsx",
+    "employee_id": "L-C",
+    "valor_observado": 0
+  }
+]
