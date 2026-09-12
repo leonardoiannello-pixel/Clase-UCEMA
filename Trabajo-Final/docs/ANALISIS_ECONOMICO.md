@@ -8,9 +8,9 @@ Este análisis separa tres capas de costo que no deben mezclarse: el workflow de
 |---|---|---|
 | Host de las corridas | Codex desktop | Verificado en los registros de las tres corridas |
 | Modelo seleccionado | `GPT-6 Astra Light`, informado por el usuario como configuración visible en Codex desktop | Declaración del usuario; no se presenta como metadata capturada por el host |
-| Input tokens | No expuestos | `null`; no se estiman |
-| Cached input tokens | No expuestos | `null`; no se estiman |
-| Output tokens | No expuestos | `null`; no se estiman |
+| Input tokens | No expuestos | `null`; no se estiman como medición |
+| Cached input tokens | No expuestos | `null`; no se estiman como medición |
+| Output tokens | No expuestos | `null`; no se estiman como medición |
 | Pago adicional por las tres corridas | Ninguno | Costo marginal de caja observado: 0 |
 | API paga | No utilizada | No se asigna tarifa API a corridas que no usaron API |
 | Créditos/extends adicionales comprados | Ninguno | Se utilizaron únicamente extends incluidos/disponibles en la cuenta |
@@ -34,23 +34,30 @@ La Corrida 2 incorpora una intervención humana real: edición manual de `Discre
 
 Para una implementación operativa futura deberían registrarse minutos por rol y actividad, cantidad de excepciones y retrabajos, y una tasa interna autorizada. Sólo entonces sería válido comparar el proceso asistido contra un baseline manual y calcular ahorro, ROI o payback.
 
-## 4. Proyección operativa
+## 4. Costo por corrida y proyección operativa
 
-Este workflow corresponde a un proceso de Compensation por ciclo, no a una tarea que deba ejecutarse semanalmente. Para poder proyectar sin confundir observación con supuesto se usa el siguiente escenario de planificación:
+Con la evidencia disponible no existe un costo por token verificable por corrida. Sí existe un dato de caja observado: las tres corridas consumieron únicamente capacidad incluida en la cuenta y no generaron desembolso incremental. Por eso:
 
-- **1 ciclo salarial por año** como hipótesis de proyección, no como frecuencia observada del repositorio;
-- por ciclo, una operación `generate` y al menos una operación `consolidate`;
-- pueden existir reintentos cuando una devolución es rechazada, como ocurrió en Corrida 2;
-- bajo el mismo esquema observado —uso de Codex desktop dentro de los límites incluidos y sin comprar créditos adicionales— el desembolso marginal de caja atribuible al host sería **0 por ciclo** y, por lo tanto, **0 por año**;
-- esta proyección deja de ser válida si el volumen supera los límites incluidos, se compran créditos, se migra a una API paga o se incurre en infraestructura adicional.
+- **costo marginal de caja observado por las tres corridas:** 0;
+- **costo marginal de caja promedio observado por corrida:** 0 / 3 = **0**;
+- esta cifra no incluye suscripción fija, tiempo humano, equipo ni mantenimiento.
 
-No se presenta una cifra semanal artificial porque el proceso no tiene cadencia semanal. Si en producción se adoptara otra frecuencia, la proyección debe recalcularse con esa frecuencia real.
+El workflow corresponde a un proceso de Compensation por ciclo, no a una tarea semanal. Para cumplir la proyección solicitada sin disfrazar una cadencia inexistente, se usa un escenario explícito:
+
+- hipótesis: **1 ciclo salarial por año**;
+- por ciclo: una operación `generate` y al menos una `consolidate`; pueden existir reintentos ante devoluciones rechazadas, como ocurrió en Corrida 2;
+- bajo el mismo esquema observado —Codex desktop dentro de los límites incluidos y sin comprar créditos— el **desembolso marginal de caja proyectado es 0 por ciclo y 0 por año**;
+- su **equivalente semanal anualizado** es `0 / 52 = 0` de costo marginal de caja por semana;
+- ese valor semanal es sólo una equivalencia matemática de la proyección anual, **no significa que el proceso se ejecute semanalmente**;
+- la proyección deja de ser válida si se compran créditos, se usa API paga, aumenta el volumen o se incorpora infraestructura adicional.
+
+Si en producción se adopta otra frecuencia, debe recalcularse con la frecuencia real y los costos efectivamente observados.
 
 ## 5. Elección del modelo
 
-El principio de diseño es utilizar **el modelo más liviano que pueda coordinar la tarea de manera confiable**, porque el modelo no necesita resolver la matemática salarial. Sus funciones son interpretar la solicitud, elegir la operación (`verify`, `generate` o `consolidate`), invocar la herramienta, leer una salida estructurada, explicar excepciones y detenerse cuando se requiere intervención humana.
+El criterio es utilizar **el modelo más liviano que pueda coordinar la tarea de manera confiable**, porque el modelo no necesita resolver la matemática salarial. Sus funciones son interpretar la solicitud, elegir la operación (`verify`, `generate` o `consolidate`), invocar la herramienta, leer una salida estructurada, explicar excepciones y detenerse cuando se requiere intervención humana.
 
-El usuario informa que las corridas se realizaron con la configuración **GPT-6 Astra Light** de Codex desktop. Esa elección es coherente con el principio anterior: una configuración `Light` resultó suficiente para coordinar tres ejecuciones reales, incluida una falla y su posterior reejecución con V4.1, mientras los controles críticos permanecieron en código determinístico.
+El usuario informa que las corridas se realizaron con la configuración **GPT-6 Astra Light** de Codex desktop. Esa elección es coherente con el criterio anterior: una configuración `Light` resultó suficiente para coordinar tres ejecuciones reales, incluida una falla y su posterior reejecución con V4.1, mientras los controles críticos permanecieron en código determinístico.
 
 No se afirma que `GPT-6 Astra Light` sea el mínimo absoluto posible porque no se hizo un benchmark controlado contra otros modelos. La conclusión respaldada por la evidencia es más acotada: **no fue necesario utilizar deliberadamente un modelo más pesado para que el workflow ejecutara y documentara correctamente estas corridas**.
 
@@ -74,4 +81,4 @@ La fuente de precios, moneda, fecha y modalidad deben conservarse junto a la cor
 
 ## Conclusión económica
 
-Para las tres corridas documentadas, el dato económico real disponible es simple: **no hubo desembolso incremental por uso del modelo**. La limitación es igualmente clara: el host no expuso tokens ni usage metadata, por lo que no existe un costo por token verificable de estas corridas. El diseño reduce la necesidad de un modelo pesado al delegar la lógica salarial a herramientas determinísticas, pero el beneficio económico total del sistema sólo podría demostrarse midiendo tiempo humano, retrabajo y costos operativos contra un proceso manual comparable.
+Para las tres corridas documentadas, el dato económico real disponible es simple: **no hubo desembolso incremental por uso del modelo**. La limitación es igualmente clara: el host no expuso tokens ni usage metadata, por lo que no existe un costo por token verificable de estas corridas. La proyección anual y su equivalente semanal se construyen únicamente sobre el costo marginal de caja observado, no sobre una falsa estimación de tokens. El diseño reduce la necesidad de un modelo pesado al delegar la lógica salarial a herramientas determinísticas, pero el beneficio económico total sólo podría demostrarse midiendo tiempo humano, retrabajo y costos operativos contra un proceso manual comparable.
