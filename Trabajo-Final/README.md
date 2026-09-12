@@ -1,68 +1,150 @@
 # Salary Review Agent — Trabajo Final
 
-Borrador factual para la materia Creación de Agentes de IA, MBA UCEMA. Este proyecto coordina un ciclo de revisión salarial de población fuera de convenio con cálculo determinístico, revisión humana acotada y aprobación final pendiente.
+Trabajo Final de **Creación de Agentes de IA — MBA UCEMA**. El proyecto implementa un sistema agéntico para asistir un ciclo de revisión salarial de población fuera de convenio, combinando coordinación por IA, cálculo determinístico, archivos Excel protegidos, revisión humana acotada, controles de budget y aprobación final humana.
 
-**Estado de la entrega:** V4 técnica validada e integrada a `main` mediante el [PR #4](https://github.com/leonardoiannello-pixel/Clase-UCEMA/pull/4). Este paquete agrega contrato de agente, interfaz local y documentación. Las tres corridas instrumentadas del agente final y la medición de costos LLM siguen pendientes. No hay evidencia de producción ni de procesamiento de salarios reales.
+La lógica salarial no queda librada al modelo. El agente interpreta la solicitud, elige la operación, invoca una herramienta local, lee resultados estructurados, comunica excepciones y solicita intervención humana cuando corresponde. Los cálculos de porcentajes, redondeos, compa-ratios, caps y budgets se ejecutan en código determinístico.
+
+**Estado actual:** las tres corridas finales están ejecutadas y documentadas. La Corrida 2 produjo una falla real al recibir un archivo guardado en Microsoft Excel; esa falla se preservó, se corrigió mediante V4.1 y se volvió a ejecutar sobre exactamente los mismos archivos reviewed en Corrida 3. La aprobación final continúa `PENDING_HUMAN_APPROVAL`.
+
+> Los datos publicados son completamente sintéticos. No se incorporan salarios reales ni referencias propietarias.
 
 ## Lectura rápida para evaluación
 
-1. [Decisiones y evolución V1–V4](DECISIONES.md).
-2. [System prompt de seis piezas](prompts/system_prompt.md) y [solicitud de ejecución](prompts/user_prompt.md).
-3. [Reproducción](docs/REPRODUCCION.md), [validación técnica](docs/VALIDACION_TECNICA.md) y [demo sintética existente](corridas/demo_sintetica/README.md).
-4. [Supervisión L2](docs/SUPERVISION.md), [gobierno y riesgo](docs/GOBIERNO_Y_RIESGO.md), [análisis económico](docs/ANALISIS_ECONOMICO.md).
-5. [Checklist de rúbrica y pendientes](docs/CHECKLIST_RUBRICA.md).
+1. [DECISIONES.md](DECISIONES.md): evolución V1 → V4 → V4.1, fallas y decisiones.
+2. [prompts/system_prompt.md](prompts/system_prompt.md) y [prompts/user_prompt.md](prompts/user_prompt.md): contrato del agente.
+3. [corridas/](corridas/): tres ejecuciones reales con inputs, outputs, fechas, hashes y logs.
+4. [docs/SUPERVISION.md](docs/SUPERVISION.md) y [docs/GOBIERNO_Y_RIESGO.md](docs/GOBIERNO_Y_RIESGO.md): nivel L2, responsabilidades y riesgos.
+5. [docs/ANALISIS_ECONOMICO.md](docs/ANALISIS_ECONOMICO.md): costo observado, limitaciones de medición y criterio de modelo.
+6. [docs/REPRODUCCION.md](docs/REPRODUCCION.md): reconstrucción técnica.
+7. [docs/CHECKLIST_RUBRICA.md](docs/CHECKLIST_RUBRICA.md): mapeo contra la rúbrica.
 
-## Problema y alcance
+## 1. Problema
 
-Un ciclo salarial requiere aplicar reglas consistentes, respetar presupuestos, separar decisiones automáticas y humanas y detectar alteraciones al recibir archivos de revisión. El sistema prepara esa propuesta y controla su devolución. No reemplaza la autoridad salarial ni define políticas de Compensation.
+Un ciclo salarial requiere aplicar reglas consistentes a muchas personas, respetar presupuestos, preservar trazabilidad y permitir discreción humana sin perder control. El sistema automatiza la preparación y consolidación de propuestas, pero no reemplaza la decisión salarial humana.
 
-La muestra pública tiene 18 personas sintéticas: 15 empleados y 3 líderes. General, Promotion y Progression son protegidos; Merit y Market se calculan según las reglas V4. Los salarios se redondean a ARS 100. Leadership se procesa aparte y utiliza su propio budget DEMO. Los parámetros discrecionales DEMO no son recomendaciones de negocio.
+La muestra pública contiene **18 personas sintéticas: 15 empleados y 3 líderes**. El workflow contempla promociones, progresiones, mérito, mercado, redondeo, budgets por equipo y un pool separado de Leadership.
 
-## Por qué se plantea como agente
+Los componentes `General`, `Promotion` y `Progression` son protegidos. `Merit` y `Market` se calculan según reglas parametrizadas. El salario se redondea a ARS 100. Los líderes no revisan su propio salario. El ajuste discrecional humano se registra por separado y sólo impacta `Final`, no reescribe la propuesta del sistema.
 
-El contrato del agente exige interpretar la solicitud, elegir entre verificar/generar/consolidar, invocar herramientas, leer resultados, reportar excepciones y pedir la intervención humana que falta. El sistema completo incluye esa coordinación, la herramienta determinística y la revisión humana.
+## 2. Qué hace el agente
 
-La capa de IA está especificada en los prompts para un host que pueda invocar herramientas. La interfaz Python no interpreta lenguaje natural ni llama a un modelo. No se afirma que exista aquí un orquestador LLM autónomo instrumentado: falta ejecutar y registrar las tres corridas finales con el host/modelo elegido. El trabajo previo se desarrolló con asistencia de IA, lo que no sustituye esas evidencias.
+El contrato final está dividido en `system prompt` y `user prompt` y utiliza las seis piezas trabajadas en clase: **Rol, Contexto, Tarea, Restricciones, Formato y Ejemplos**.
 
-| Componente | Responsabilidad | Límite |
-|---|---|---|
-| IA en el host del agente | Entender la operación solicitada, invocar interfaz, comunicar resultados verificables | No calcula porcentajes libremente ni aprueba |
-| Interfaz local `agente/cli.py` | Verificar referencias, preparar copias, ejecutar V4 y emitir reporte JSON | No cambia reglas ni integra APIs externas |
-| Motor determinístico V4 | Componentes, X, redondeo, cap, archivos protegidos, budgets y consolidación | No decide ajustes humanos ni autoridad final |
-| Revisor humano | Revisar su población y editar sólo Discretionary Adjustment % | No modifica la propuesta ni decide su propio salario |
-| Compensation / autoridad autorizada | Resolver excepciones, validar budgets y aprobar fuera del motor | No se identifica una persona sin evidencia |
+El agente puede coordinar tres operaciones:
 
-## Arquitectura y flujo
+- `verify`: comprobar referencias, hashes y dependencias;
+- `generate`: generar la propuesta, master y archivos de revisión;
+- `consolidate`: validar devoluciones, detectar cambios protegidos, recalcular Final y budgets y generar el consolidado.
+
+La salida del agente es estructurada e incluye estado, inputs procesados, outputs, excepciones, budgets, archivos de revisión, estado de aprobación y próximo paso requerido.
+
+## 3. Arquitectura
 
 ```mermaid
 flowchart TD
-    U[Solicitud del usuario] --> A[Agente en host con prompts finales]
-    A --> I[Interfaz local generate / consolidate]
-    E[Employees / Market / Parameters sintéticos] --> I
-    I --> V[Motor V4 determinístico sin modificaciones]
-    V --> P[Master + manifest confiable]
-    V --> R[Archivos por revisor + Leadership separado]
-    R --> H[Revisión y ajuste humano]
-    H --> C[Consolidación V4 contra originales]
+    U[Solicitud del usuario] --> A[Agente en Codex desktop]
+    A --> I[Interfaz local agente/cli.py]
+    E[Employees / Market / Parameters] --> I
+    I --> G[generate - V4]
+    G --> P[Master + manifest confiable]
+    G --> R[Archivos por equipo + Leadership]
+    R --> H[Revisión humana: sólo ajuste discrecional]
+    H --> C[consolidate - V4.1]
     P --> C
-    C --> X[Excepciones y budgets]
-    X --> F[Consolidado PENDING_HUMAN_APPROVAL]
-    F --> AP[Decisión de la autoridad humana fuera del motor]
+    C --> X[Validaciones + budgets + excepciones]
+    X --> F[consolidated_final.xlsx]
+    F --> AP[PENDING_HUMAN_APPROVAL]
 ```
 
-La flecha de revisión representa el workflow previsto; no acredita una devolución real. La demo consolidada existente usa ajustes cero. Ni `OK` de budget ni generación exitosa equivalen a aprobación.
+| Componente | Responsabilidad | Límite |
+|---|---|---|
+| Agente en el host | Interpretar la tarea, elegir operación, invocar herramienta y comunicar resultados | No inventa salarios ni aprueba |
+| `agente/cli.py` | Preparar ejecución, verificar fuentes, invocar workflow y emitir reporte JSON | No decide política salarial |
+| V4 / V4.1 | Cálculos, redondeo, cap, protección, budgets y consolidación | No decide ajustes humanos |
+| Revisor humano | Revisar población y editar sólo `Discretionary Adjustment %` | No puede modificar la propuesta protegida |
+| Compensation / autoridad | Resolver excepciones y aprobar el ciclo | La identidad real no se inventa en el repositorio |
 
-## Inputs y outputs
+## 4. Evolución del sistema
 
-El [catálogo de inputs](inputs/README.md) apunta a Employees, Market y Parameters sintéticos, con hashes verificables. Los campos de mapping ya existen: `Leader_Employee_ID` e `Is_Leader`. Los líderes no aparecen en el archivo de su equipo.
+V1 implementó la lógica inicial. Las primeras pruebas mostraron que Market podía sobrecompensar después de Merit y que existían problemas de precisión.
 
-`generate` produce `master_proposal.xlsx`, `team_L-A.xlsx`, `team_L-B.xlsx`, `team_L-C.xlsx`, `leadership_review.xlsx`, manifest y log. `consolidate` produce `consolidated_final.xlsx` y validación, o rechaza la devolución sin consolidado válido. La interfaz agrega `reporte.json`, invocación y logs técnicos. Proposed y Final permanecen diferenciados; Final Compa Ratio corresponde al salario posterior al ajuste.
+V2 cambió únicamente las reglas de Market: se utiliza la posición destino y Market sólo cubre el gap restante hasta la referencia.
 
-## Reproducir sin recorrer Entrega-2
+V3 agregó la política de redondeo: salarios en múltiplos de ARS 100, porcentajes con dos decimales y corrección de `X` en pasos de 0,01 pp para no exceder budget.
 
-Clonar el repositorio completo y entrar a `Trabajo-Final/`. La carpeta es autocontenida para lectura y evaluación; para ejecución reutiliza archivos hermanos referenciados. Copiar sólo esta carpeta no alcanza. No se duplican los históricos.
+V4 convirtió el cálculo en un workflow operativo: archivos separados por revisor, pool Leadership, única columna editable, ajuste discrecional, protección, manifest confiable, consolidación y controles de integridad.
 
-Con Python, `openpyxl`, Node y `@oai/artifact-tool` disponibles según la [guía de reproducción](docs/REPRODUCCION.md):
+V4.1 nació de una falla real en Corrida 2. Microsoft Excel reserializó referencias equivalentes de fórmula (`'Detail'!` → `Detail!` y `'Summary'!` → `Summary!`). V4 comparaba strings exactos y produjo falsos positivos. V4.1 normaliza exclusivamente esas dos representaciones opcionales sin ignorar cambios de dirección, operador, constante, hoja, strings, referencias externas ni otras diferencias semánticas. La V4 histórica permanece intacta.
+
+El detalle de cada decisión y su evidencia está en [DECISIONES.md](DECISIONES.md).
+
+## 5. Tres corridas finales
+
+### Corrida 1 — generación
+
+`generate` terminó con estado **`GENERATED_WITH_EXCEPTIONS`** y exit code 0.
+
+Generó master, tres archivos de equipo, archivo Leadership, manifest y validación. Detectó una referencia de mercado faltante para B004 y un budget protegido insuficiente en Team Gamma. No hubo revisión humana ni consolidación. El estado quedó `PENDING_HUMAN_APPROVAL`.
+
+Evidencia: [corrida_01](corridas/corrida_01/registro.json).
+
+### Corrida 2 — intervención humana y rechazo
+
+Un humano abrió `team_L-A.xlsx` en Microsoft Excel y agregó **+1,00 punto porcentual** de `Discretionary Adjustment %` a A001. El agente no decidió ni escribió ese ajuste.
+
+La consolidación se ejecutó realmente, pero V4 la rechazó con **13 `PROTECTED_FIELD_CHANGED`**. La causa observada fue una diferencia de serialización de fórmulas introducida por Excel, no una modificación semántica de los campos protegidos.
+
+La falla se preservó sin reescribirla. No se generó un consolidado válido.
+
+Evidencia: [corrida_02](corridas/corrida_02/registro.json).
+
+### Corrida 3 — mismo input, V4.1
+
+Se utilizaron **exactamente los mismos cuatro archivos reviewed de Corrida 2, verificados por hash**. No se modificó nuevamente el Excel humano.
+
+V4.1 consolidó con estado **`CONSOLIDATED_WITH_EXCEPTIONS`**, exit code 0. Se generaron `consolidated_final.xlsx` y `validation_exceptions.json`, sin errores de integridad por las diferencias de comillas.
+
+Para A001:
+
+- Proposed Salary: **ARS 1.923.600**;
+- ajuste humano: **+1,00 pp**;
+- Final Salary: **ARS 1.937.600**;
+- Final Increase: **38,40%**;
+- Final Compa Ratio: **0,897037...**.
+
+El ajuste llevó a Team Alpha a **ARS 11.534.000** frente a un máximo de **ARS 11.520.000**, exceso de **ARS 14.000**. El sistema informó `BUDGET_EXCEEDED` y no corrigió el ajuste automáticamente. Team Gamma mantuvo su exceso de ARS 522.000. Beta y Leadership quedaron dentro de budget.
+
+Evidencia: [corrida_03](corridas/corrida_03/registro.json).
+
+## 6. Supervisión humana
+
+El sistema opera en un esquema **L2** definido operativamente para este proyecto: el agente y las herramientas ejecutan trabajo y controles, pero una persona conserva la decisión final.
+
+Los puntos de intervención son deliberados:
+
+1. Compensation valida inputs y parámetros antes de generar.
+2. El sistema genera propuestas y archivos de revisión.
+3. El líder puede editar únicamente el ajuste discrecional de su población.
+4. El sistema consolida y reporta excesos o alteraciones.
+5. Compensation resuelve excepciones y la autoridad autorizada aprueba fuera del motor.
+
+Un budget `OK` nunca equivale a aprobación. Todas las corridas conservan `PENDING_HUMAN_APPROVAL`.
+
+## 7. Economía y modelo
+
+Las tres corridas se ejecutaron en **Codex desktop**. El host no expuso de forma verificable input tokens, cached tokens, output tokens ni un identificador de modelo en la metadata de cada corrida; esos campos permanecen en `null`.
+
+El usuario informa que la configuración seleccionada fue **GPT-6 Astra Light**. Se utilizó una configuración liviana porque el modelo sólo coordina operaciones y explica resultados; la matemática salarial crítica se ejecuta en código determinístico. No se afirma que sea el modelo mínimo absoluto porque no se realizó un benchmark comparativo.
+
+No se compraron créditos ni se pagó uso adicional para ejecutar las tres corridas: se utilizaron extends ya disponibles. Por lo tanto, el **desembolso marginal de caja observado para estas corridas fue 0**, sin confundirlo con costo económico total cero. Suscripción, equipo, tiempo humano, mantenimiento y seguridad son costos distintos.
+
+Detalle: [docs/ANALISIS_ECONOMICO.md](docs/ANALISIS_ECONOMICO.md).
+
+## 8. Reproducción
+
+El paquete actual se evalúa dentro de `Trabajo-Final/` y reutiliza fuentes V4 que viven en `Entrega-2/v4/`. Por eso, en esta rama debe clonarse el repositorio completo; copiar sólo `Trabajo-Final/` no alcanza.
+
+Con Python, `openpyxl`, Node y `@oai/artifact-tool` disponibles:
 
 ```powershell
 python agente/cli.py verify
@@ -70,26 +152,31 @@ $env:SALARY_REVIEW_PASSWORD = 'DEMO-only'
 python agente/cli.py generate --output ejecuciones/generacion_01 --synthetic-data
 ```
 
-Los ejecutables pueden ser los del runtime local de Codex, resueltos con `load_workspace_dependencies`; Node debe poder resolver Artifact Tool desde un `node_modules` ancestro de la ejecución. No se asume que instalar sólo `openpyxl` alcanza.
-
-Para consolidar devoluciones efectivas:
+Para consolidar:
 
 ```powershell
 python agente/cli.py consolidate --original ejecuciones/generacion_01/artifacts --reviewed ejecuciones/devoluciones_01 --output ejecuciones/consolidacion_01 --synthetic-data
 ```
 
-La carpeta `devoluciones_01` debe existir y contener los cuatro archivos recibidos. No se crean devoluciones falsas. Para una prueba de ajuste cero sin revisores, la guía ofrece un comando identificado explícitamente como prueba técnica.
+La guía completa y requisitos están en [docs/REPRODUCCION.md](docs/REPRODUCCION.md).
 
-## Supervisión, limitaciones y evidencia pendiente
+Para la entrega académica final, este contenido se promoverá a la raíz de un repositorio público limpio y se incluirán las dependencias V4 necesarias para que no dependa de una carpeta hermana.
 
-L2 es la definición operativa adoptada para este sistema: el motor realiza trabajo y controles, y el humano conserva la decisión final. Compensation combina impacto sobre personas, información sensible y decisiones económicas; por eso no corresponde aprobación automática.
+## 9. Gobierno y limitaciones
 
-- Protección Excel previene modificaciones accidentales; no cifra ni controla acceso. Routing no autentica al revisor. No hay distribución automática.
-- V4 valida los casos implementados, no toda posible incorrección de los inputs. Una referencia presente pero equivocada requiere control humano. Ver matriz de riesgo.
-- Gamma es una excepción conocida: payroll 9.322.000 frente a 8.800.000. No se oculta ni se reduce el protegido para forzar `OK`.
-- El cap protege el componente Market automático; no es un tope universal al salario. Merit/protegidos pueden superar mercado y el ajuste humano tiene los controles definidos en V4.
-- Requiere runtime JS compatible. El recálculo se probó con Artifact Tool; validación de usabilidad en Excel del destinatario sigue pendiente.
-- No hay API paga, HRIS, emails, bonus ni Power BI. No hay métricas LLM ni costos inventados.
-- [corrida_01](corridas/corrida_01/registro.json), [corrida_02](corridas/corrida_02/registro.json) y [corrida_03](corridas/corrida_03/registro.json) son plantillas vacías. La demo V4 y los tests se distinguen de corridas del agente final.
+- Los datos públicos son sintéticos; no se presentan como salarios reales.
+- La protección de Excel previene modificaciones accidentales, pero **no es cifrado ni control de acceso**.
+- El `reviewer_id` es routing sintético; no autentica identidad.
+- El master y manifest deben permanecer en almacenamiento confiable.
+- Una referencia de mercado presente pero conceptualmente incorrecta requiere revisión humana.
+- Los excesos de budget se reportan; el sistema no recorta componentes protegidos ni ajustes humanos para producir un `OK` artificial.
+- No hay envío automático de emails, integración con HRIS, Power BI, bonus ni aprobación automática.
+- No se publican contraseñas ni credenciales.
+- No se afirma uso en producción.
+- Tokens del host no medidos permanecen `null`; no se inventan.
 
-Los archivos V1–V4, README previos y outputs históricos permanecen sin modificación. Las copias de ejecución conservan exactamente los bytes leídos; su procedencia se documenta en el [catálogo V4](agente/v4_referencias.json).
+La matriz completa se encuentra en [docs/GOBIERNO_Y_RIESGO.md](docs/GOBIERNO_Y_RIESGO.md).
+
+## 10. Estado de cierre
+
+La evidencia técnica y académica principal ya está construida: sistema, proceso, tres corridas, falla real, corrección, supervisión, gobierno y análisis económico. Antes de entregar resta ejecutar la revisión final con el evaluador, realizar los ajustes editoriales que correspondan y publicar el contenido en un repositorio final con la estructura obligatoria en la raíz.
