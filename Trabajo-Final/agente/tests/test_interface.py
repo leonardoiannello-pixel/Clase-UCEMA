@@ -32,6 +32,26 @@ def tamper(path):
             z.writestr(n,value)
 
 
+def change_formula_representation(path, semantic_change=None):
+    """Technical fixture only. Operates exclusively on temporary test copies."""
+    with ZipFile(path) as z:
+        data={n:z.read(n) for n in z.namelist()}
+    ns='{http://schemas.openxmlformats.org/spreadsheetml/2006/main}'
+    for name in list(data):
+        if not name.startswith('xl/worksheets/') or not name.endswith('.xml'):
+            continue
+        root=ET.fromstring(data[name])
+        for cell in root.iter(ns+'c'):
+            f=cell.find(ns+'f')
+            if f is not None and f.text:
+                f.text=f.text.replace("'Detail'!",'Detail!').replace("'Summary'!",'Summary!')
+                if semantic_change and name=='xl/worksheets/sheet1.xml' and cell.get('r')=='B6':
+                    f.text=semantic_change
+        data[name]=ET.tostring(root,encoding='utf-8')
+    with ZipFile(path,'w',ZIP_DEFLATED) as z:
+        for name,content in data.items(): z.writestr(name,content)
+
+
 class InterfaceTests(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
@@ -94,6 +114,38 @@ class InterfaceTests(unittest.TestCase):
         self.assertEqual(result['estado'],'REJECTED')
         self.assertTrue(any(e['error']=='PROTECTED_FIELD_CHANGED' for e in result['excepciones']))
         self.assertEqual(result['outputs_generados'],[])
+
+    def test_v41_optional_quotes_consolidate_technical_fixture(self):
+        reviewed=self.base/'excel-representation'
+        reviewed.mkdir()
+        for name in ['team_L-A.xlsx','team_L-B.xlsx','team_L-C.xlsx','leadership_review.xlsx']:
+            shutil.copyfile(self.generated/'artifacts'/name,reviewed/name)
+        change_formula_representation(reviewed/'team_L-A.xlsx')
+        before={p.name:cli.sha(p) for p in reviewed.iterdir()}
+        output=self.base/'equivalent-output'
+        result=cli.execute('consolidate',output,synthetic_data=True,original=self.generated/'artifacts',reviewed=reviewed)
+        self.assertEqual(result['estado'],'CONSOLIDATED_WITH_EXCEPTIONS')
+        self.assertEqual(result['workflow_version'],'V4.1')
+        self.assertEqual(before,{p.name:cli.sha(p) for p in reviewed.iterdir()})
+        self.assertEqual(result['budgets'],self.result['budgets'])
+        invocation=json.loads((output/'tool_invocation.json').read_text())
+        self.assertTrue(invocation['command'][1].endswith('workflow_v41.py'))
+        for name,p in cli.references('agente/v41_referencias.json').items():
+            self.assertEqual(p.read_bytes(),(output/'runtime/v4'/name).read_bytes())
+            self.assertEqual(invocation['v41_copies'][name]['sha256'],cli.sha(p))
+
+    def test_v41_semantic_formula_changes_rejected_despite_same_cache(self):
+        for i,formula in enumerate(['SUM(Detail!Q3:Q6)','SUM(Detail!Q2:Q6)+1','SUM(Detail!Q2:Q6)*1','SUM(Summary!Q2:Q6)']):
+            with self.subTest(formula=formula):
+                reviewed=self.base/f'semantic-{i}'
+                reviewed.mkdir()
+                for name in ['team_L-A.xlsx','team_L-B.xlsx','team_L-C.xlsx','leadership_review.xlsx']:
+                    shutil.copyfile(self.generated/'artifacts'/name,reviewed/name)
+                change_formula_representation(reviewed/'team_L-A.xlsx',formula)
+                result=cli.execute('consolidate',self.base/f'semantic-output-{i}',synthetic_data=True,
+                                   original=self.generated/'artifacts',reviewed=reviewed)
+                self.assertEqual(result['estado'],'REJECTED')
+                self.assertTrue(any(e.get('cell')=='Summary!B6' and e['error']=='PROTECTED_FIELD_CHANGED' for e in result['excepciones']))
 
     def test_existing_output_not_overwritten(self):
         before=cli.sha(self.generated/'reporte.json')

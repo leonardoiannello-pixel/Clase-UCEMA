@@ -1,0 +1,18 @@
+{
+  "version": "V4.1",
+  "historical_base_catalog": "agente/v4_referencias.json",
+  "files": {
+    "workflow_v41.py": {
+      "path": "agente/v41/workflow_v41.py",
+      "kind": "academic_variant_executable",
+      "sha256": "1f09908f11e300ce827ddc1aadf98003573227b781ade6a24708b3ca61604842",
+      "hash_mode": "lf_for_text"
+    },
+    "formula_equivalence.py": {
+      "path": "agente/v41/formula_equivalence.py",
+      "kind": "academic_variant_executable",
+      "sha256": "f449f3d7ad0b9d94da213907be4e0cc76934f0687657099da0fe68431b903292",
+      "hash_mode": "lf_for_text"
+    }
+  }
+}

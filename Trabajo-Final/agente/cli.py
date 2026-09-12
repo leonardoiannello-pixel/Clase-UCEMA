@@ -38,7 +38,9 @@ def references(catalog):
 def verify():
     code = references('agente/v4_referencias.json')
     inputs = references('inputs/referencias.json')
+    variant = references('agente/v41_referencias.json')
     return {'estado':'REFERENCES_VERIFIED', 'referencias':list(code)+list(inputs),
+            'variante_consolidacion':'V4.1', 'referencias_v41':list(variant),
             'python_openpyxl_disponible':importlib.util.find_spec('openpyxl') is not None,
             'node_executable':shutil.which(os.environ.get('SALARY_NODE','node')),
             'artifact_tool':'Requiere resolución desde un node_modules ancestro del directorio de ejecución.',
@@ -105,6 +107,7 @@ def execute(operation, output, *, synthetic_data=False, employees=None, market=N
         if not password:
             raise ValueError('SALARY_REVIEW_PASSWORD_REQUIRED')
         code = references('agente/v4_referencias.json')
+        variant = references('agente/v41_referencias.json') if operation == 'consolidate' else {}
         output = ensure_new_output(output)
         if operation == 'generate':
             defaults = references('inputs/referencias.json')
@@ -137,8 +140,15 @@ def execute(operation, output, *, synthetic_data=False, employees=None, market=N
             if sha(path)!=sha(runtime/name):
                 raise ValueError('RUNTIME_COPY_MISMATCH')
             copied[name] = {'source':str(path),'sha256':sha(runtime/name)}
+        variant_copies = {}
+        for name,path in variant.items():
+            shutil.copyfile(path,runtime/name)
+            if sha(path)!=sha(runtime/name):
+                raise ValueError('RUNTIME_COPY_MISMATCH')
+            variant_copies[name] = {'source':str(path),'sha256':sha(runtime/name)}
         artifacts = output/'artifacts'
-        command = [sys.executable,str(runtime/'workflow.py'),operation,'--output',str(artifacts)]
+        entrypoint = 'workflow_v41.py' if operation == 'consolidate' else 'workflow.py'
+        command = [sys.executable,str(runtime/entrypoint),operation,'--output',str(artifacts)]
         if operation == 'generate':
             input_dir = output/'runtime/inputs'
             input_dir.mkdir()
@@ -152,7 +162,9 @@ def execute(operation, output, *, synthetic_data=False, employees=None, market=N
             report['inputs_procesados'] = [{'tipo':key,'origen':str(path),'sha256':sha(path)} for key,path in sources.items()]
             command += ['--original',str(original),'--reviewed',str(reviewed)]
         invocation = {'command':command,'shell':False,'password_source':'environment; value not recorded',
-                      'v4_copies':copied,'llm_invoked':False}
+                      'v4_copies':copied,'v41_copies':variant_copies,
+                      'workflow_version':'V4.1' if variant else 'V4','llm_invoked':False}
+        report['workflow_version'] = invocation['workflow_version']
         write_json(output/'tool_invocation.json',invocation)
         child = subprocess.run(command,capture_output=True,text=True,encoding='utf-8',errors='replace',
                                env={**os.environ,'PYTHONIOENCODING':'utf-8'})

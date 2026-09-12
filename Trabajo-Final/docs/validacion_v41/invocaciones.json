@@ -1,0 +1,39 @@
+[
+  {
+    "suite": "historical_v4",
+    "argv": [
+      "C:\\Users\\Usuario\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Entrega-2/v4/tests",
+      "-v"
+    ],
+    "exit_code": 0
+  },
+  {
+    "suite": "academic_interface_v41",
+    "argv": [
+      "C:\\Users\\Usuario\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Trabajo-Final/agente/tests",
+      "-v"
+    ],
+    "exit_code": 0
+  },
+  {
+    "suite": "historical_suite_on_v41",
+    "argv": [
+      "C:\\Users\\Usuario\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-B",
+      "Trabajo-Final/agente/tests/run_historical_suite_v41.py"
+    ],
+    "exit_code": 0
+  }
+]

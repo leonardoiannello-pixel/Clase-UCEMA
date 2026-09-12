@@ -25,6 +25,16 @@ Reconstrucción basada en prompts, observaciones y artefactos conservados. No se
 
 ## Decisiones que siguen abiertas
 
+### Corrección V4.1 descubierta en Corrida 2
+
+**Problema:** la consolidación real de Corrida 2 rechazó 13 campos protegidos de un archivo guardado manualmente en Excel. La comparación textual de V4 fue demasiado estricta: Excel quitó comillas opcionales de referencias `'Detail'!` y `'Summary'!`, sin evidencia de cambio semántico en esas fórmulas. El rechazo permanece registrado, sin reescribir la corrida ni editar su devolución humana.
+
+**Decisión:** introducir [V4.1 dentro del paquete académico](agente/v41/README.md), derivada de V4 con un cambio acotado al comparador. Se normaliza únicamente la representación de esos dos calificadores de hoja cuando son tokens completos de fórmula; se preservan strings literales, comillas necesarias y toda diferencia restante. Es normalización mínima de representación, no relajación del control semántico. `PROTECTED_FIELD_CHANGED` sigue activo y no se comparan sólo caches.
+
+**Efecto esperado:** el mismo archivo humano de Corrida 2 debe poder superar este falso positivo; una modificación real de referencia, operador, constante, hoja o campo protegido debe seguir siendo rechazada. Tests de lectura verifican las 13 diferencias observadas; las integraciones utilizan fixtures temporales. No se ejecuta Corrida 3 con este cambio. Generate conserva V4; la interfaz selecciona explícitamente V4.1 para futuras consolidaciones y registra hashes/versión. La V4 histórica permanece intacta.
+
+### Pendientes de decisión
+
 Ratificar parámetros DEMO y política Leadership; formalizar autoridad y registro de aprobación; configurar identidad, acceso y distribución segura; elegir host/modelo para las tres corridas y capturar uso; medir esfuerzo humano y costos. No se resuelven por inferencia del agente ni mediante cambios silenciosos al motor.
 
 Las definiciones L0–L4 del [documento de supervisión](docs/SUPERVISION.md) son operativas para este trabajo; L2 es el nivel solicitado. No se atribuye una definición textual a material docente que no fue adjuntado.

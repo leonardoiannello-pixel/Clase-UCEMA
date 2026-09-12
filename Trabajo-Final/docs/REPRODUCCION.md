@@ -42,6 +42,8 @@ La interfaz crea `runtime/v4/` con los ejecutables originales, `runtime/inputs/`
 
 ## Revisar y consolidar
 
+Desde la corrección posterior a Corrida 2, `consolidate` usa la [variante V4.1](../agente/v41/README.md). La única diferencia frente a V4 es reconocer comillas opcionales de los calificadores Detail/Summary al comparar fórmulas protegidas. Se verifican `agente/v41_referencias.json` y los hashes base V4; reporte e invocación identifican la versión usada. La generación sigue en V4 y las evidencias de corridas anteriores conservan sus versiones originales.
+
 Compensation verifica destinatarios antes de entregar archivos. El líder sólo edita Discretionary Adjustment %. No entregar a cada líder el master global. La identidad real del remitente debe comprobarse fuera de esta herramienta.
 
 Después de recibir los cuatro archivos:
