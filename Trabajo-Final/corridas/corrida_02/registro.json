@@ -1,0 +1,254 @@
+{
+  "estado": "REJECTED",
+  "fecha_utc": "2026-09-12T22:26:51.631621+00:00",
+  "modelo": null,
+  "proveedor": null,
+  "system_prompt": {
+    "archivo_efectivamente_usado": "prompts/system_prompt.md",
+    "sha256": "8859dfb064b64bb4cff3028187a21e39c1ed6e518a0590ed44e5f38af9349809"
+  },
+  "user_prompt": {
+    "archivo_efectivamente_usado": "prompts/user_prompt.md",
+    "sha256": "c3f67f5b738d3df5fca5401b51601cbe248fb93c192524f3b8a5d280b5036f07"
+  },
+  "inputs": [
+    {
+      "tipo": "original_manifest",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\corridas\\corrida_01\\ejecucion\\artifacts\\manifest.json",
+      "sha256": "910bea47d1811351d22c51c38acb1805fa985fd282f80d18d3c07d52d1d1b737"
+    },
+    {
+      "tipo": "original_master",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\corridas\\corrida_01\\ejecucion\\artifacts\\master_proposal.xlsx",
+      "sha256": "a261508df718148fcaadefcce25b1ee8d49e7dc1e0c457d1310e30f2b9b57d3d"
+    },
+    {
+      "tipo": "reviewed/leadership_review.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\leadership_review.xlsx",
+      "sha256": "586e2b90ca466df3403d7a829876dd3ce1e11be6c622871c09d1392ed646a259"
+    },
+    {
+      "tipo": "reviewed/team_L-A.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-A.xlsx",
+      "sha256": "cad0aa6f7f871514ea45a9c197b8cb57884b0830915c90bbc55fc1add13708ba"
+    },
+    {
+      "tipo": "reviewed/team_L-B.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-B.xlsx",
+      "sha256": "40fa803a36d442b6d1c0ec22f6cc97051c45f34a87339fe93e3a6f1d656b564a"
+    },
+    {
+      "tipo": "reviewed/team_L-C.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-C.xlsx",
+      "sha256": "df85672740a96fe7bd0ba61a915a4506ba7de3aed74bb1c715e112aba30f2317"
+    }
+  ],
+  "tool_invocations": [
+    "cli_invocacion.json",
+    "ejecucion/tool_invocation.json"
+  ],
+  "salida_del_agente": "salida_agente.json",
+  "archivos_generados": [],
+  "excepciones": [
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Summary!B6",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Summary!B4",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Summary!B8",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!S4",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!S2",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!V3",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!S5",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!V6",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!V2",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!V4",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!V5",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!S3",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!S6",
+      "error": "PROTECTED_FIELD_CHANGED"
+    }
+  ],
+  "tokens": {
+    "input_total": null,
+    "input_cached": null,
+    "output": null,
+    "usage_metadata": null,
+    "fuente_medicion": null,
+    "motivo": "El host no expuso modelo exacto ni métricas de uso de manera verificable para esta corrida. No se estiman costos."
+  },
+  "precio": {
+    "moneda": null,
+    "input_por_millon": null,
+    "cached_por_millon": null,
+    "output_por_millon": null,
+    "fecha": null,
+    "fuente": null
+  },
+  "costo_por_corrida": null,
+  "frecuencia_anual": null,
+  "proyeccion_anual": null,
+  "intervenciones_humanas": [
+    {
+      "intervencion_humana_real": true,
+      "fuente_declaracion": "Mensaje del usuario en esta conversación",
+      "archivo": "team_L-A.xlsx",
+      "employee_id": "A001",
+      "campo": "Discretionary Adjustment %",
+      "valor_observado": 0.01,
+      "unidad_almacenada": "fracción; multiplicar por 100 para puntos porcentuales",
+      "origen": "Edición manual en Excel fuera del agente, según declaración del usuario",
+      "decidida_por_agente": false,
+      "identidad_real": null,
+      "aclaracion": "La declaración humana y el valor observado son evidencias distintas. reviewer_id es routing sintético, no autenticación ni identidad real."
+    }
+  ],
+  "estado_aprobacion": "PENDING_HUMAN_APPROVAL",
+  "observaciones": "Consolidación real de datos sintéticos con devolución humana preservada. Ver OBSERVACIONES.md; no se aprueban salarios.",
+  "ejecucion_real": true,
+  "operacion": "consolidate",
+  "fin_utc": "2026-09-12T22:26:52.414982+00:00",
+  "source_commit": "9b4a51835cedaad7a76300e9f5c33bfb7124f1a2",
+  "host": "Codex desktop",
+  "host_metadata": "host_metadata.json",
+  "datos": "SINTETICOS",
+  "original_confiable": [
+    {
+      "archivo": "master_proposal.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\corridas\\corrida_01\\ejecucion\\artifacts\\master_proposal.xlsx",
+      "referencia": "../corrida_01/ejecucion/artifacts/master_proposal.xlsx",
+      "sha256": "a261508df718148fcaadefcce25b1ee8d49e7dc1e0c457d1310e30f2b9b57d3d"
+    },
+    {
+      "archivo": "manifest.json",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\corridas\\corrida_01\\ejecucion\\artifacts\\manifest.json",
+      "referencia": "../corrida_01/ejecucion/artifacts/manifest.json",
+      "sha256": "910bea47d1811351d22c51c38acb1805fa985fd282f80d18d3c07d52d1d1b737"
+    }
+  ],
+  "reviewed": [
+    {
+      "archivo": "team_L-A.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-A.xlsx",
+      "copia": "reviewed/team_L-A.xlsx",
+      "sha256": "cad0aa6f7f871514ea45a9c197b8cb57884b0830915c90bbc55fc1add13708ba",
+      "original_sha256": "1fd73ca9fa45f8a48e65f09c3f881e920adccda4f6c7188768e16aabb4b1da16",
+      "bytes_distintos_del_original": true
+    },
+    {
+      "archivo": "team_L-B.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-B.xlsx",
+      "copia": "reviewed/team_L-B.xlsx",
+      "sha256": "40fa803a36d442b6d1c0ec22f6cc97051c45f34a87339fe93e3a6f1d656b564a",
+      "original_sha256": "40fa803a36d442b6d1c0ec22f6cc97051c45f34a87339fe93e3a6f1d656b564a",
+      "bytes_distintos_del_original": false
+    },
+    {
+      "archivo": "team_L-C.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-C.xlsx",
+      "copia": "reviewed/team_L-C.xlsx",
+      "sha256": "df85672740a96fe7bd0ba61a915a4506ba7de3aed74bb1c715e112aba30f2317",
+      "original_sha256": "df85672740a96fe7bd0ba61a915a4506ba7de3aed74bb1c715e112aba30f2317",
+      "bytes_distintos_del_original": false
+    },
+    {
+      "archivo": "leadership_review.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\leadership_review.xlsx",
+      "copia": "reviewed/leadership_review.xlsx",
+      "sha256": "586e2b90ca466df3403d7a829876dd3ce1e11be6c622871c09d1392ed646a259",
+      "original_sha256": "586e2b90ca466df3403d7a829876dd3ce1e11be6c622871c09d1392ed646a259",
+      "bytes_distintos_del_original": false
+    }
+  ],
+  "reporte_herramienta": "ejecucion/reporte.json",
+  "budgets": [],
+  "validaciones": {
+    "proposed_reviewed_conservado": true,
+    "campos_protegidos_sin_cambios": false,
+    "diferencias_protegidas": 13,
+    "consolidado_generado": false,
+    "final_validado": null,
+    "budgets_recalculados_por_consolidacion": false,
+    "motivo": "REJECTED antes de calcular Final y budgets; observaciones de cache Excel se registran por separado."
+  },
+  "observaciones_cache_excel": "observaciones_cache_excel.json",
+  "archivos_evidencia_herramienta": [
+    {
+      "archivo": "ejecucion/artifacts/validation_exceptions.json"
+    },
+    {
+      "archivo": "ejecucion/reporte.json"
+    },
+    {
+      "archivo": "ejecucion/runtime/v4/engine.py"
+    },
+    {
+      "archivo": "ejecucion/runtime/v4/protection.py"
+    },
+    {
+      "archivo": "ejecucion/runtime/v4/render.mjs"
+    },
+    {
+      "archivo": "ejecucion/runtime/v4/requirements.txt"
+    },
+    {
+      "archivo": "ejecucion/runtime/v4/workflow.py"
+    },
+    {
+      "archivo": "ejecucion/tool_invocation.json"
+    },
+    {
+      "archivo": "ejecucion/tool_stderr.txt"
+    },
+    {
+      "archivo": "ejecucion/tool_stdout.txt"
+    }
+  ]
+}

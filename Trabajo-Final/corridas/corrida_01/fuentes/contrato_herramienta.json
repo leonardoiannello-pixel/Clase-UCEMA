@@ -1,0 +1,26 @@
+{
+  "nombre": "salary_review_workflow",
+  "tipo": "interfaz local invocable por herramientas de un host de agente",
+  "llm_integrado": false,
+  "entrypoint": "python agente/cli.py",
+  "operaciones": {
+    "verify": {"argumentos": [], "efecto": "Verifica referencias; no ejecuta un ciclo ni garantiza disponibilidad de Artifact Tool."},
+    "generate": {
+      "requeridos": ["--output", "--synthetic-data"],
+      "opcionales": ["--employees", "--market", "--parameters"],
+      "efecto": "Genera propuesta y archivos de revisión usando copias exactas de V4 e inputs sintéticos."
+    },
+    "consolidate": {
+      "requeridos": ["--output", "--original", "--reviewed", "--synthetic-data"],
+      "efecto": "Valida devoluciones contra el master/manifest confiable y consolida. No aprueba."
+    }
+  },
+  "entorno": {
+    "SALARY_REVIEW_PASSWORD": "Obligatoria para generate/consolidate; nunca registrar su valor.",
+    "SALARY_NODE": "Opcional: ejecutable Node. Por defecto node en PATH."
+  },
+  "salida": "JSON en stdout; logs del motor en el directorio de ejecución.",
+  "codigos_salida": {"0": "operación terminada; puede contener excepciones de negocio", "1": "rechazo o fallo", "2": "argumentos CLI inválidos"},
+  "aprobacion": "PENDING_HUMAN_APPROVAL",
+  "restricciones": ["Sin shell libre", "Sin API LLM", "Sin envíos", "Sin cambios de reglas", "Sin reemplazo de directorios existentes"]
+}

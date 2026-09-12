@@ -1,0 +1,24 @@
+team_L-A.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: C:\Users\Usuario\AppData\Local\Temp\tmpkn9kefx2\original\team_L-A.xlsx.inspect.ndjson
+leadership_review.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: C:\Users\Usuario\AppData\Local\Temp\tmpkn9kefx2\original\leadership_review.xlsx.inspect.ndjson
+team_L-B.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: C:\Users\Usuario\AppData\Local\Temp\tmpkn9kefx2\original\team_L-B.xlsx.inspect.ndjson
+team_L-C.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: C:\Users\Usuario\AppData\Local\Temp\tmpkn9kefx2\original\team_L-C.xlsx.inspect.ndjson
+master_proposal.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: C:\Users\Usuario\AppData\Local\Temp\tmpkn9kefx2\original\master_proposal.xlsx.inspect.ndjson
+consolidated_final.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: C:\Users\Usuario\AppData\Local\Temp\tmpkn9kefx2\valid-final\consolidated_final.xlsx.inspect.ndjson
+{"kind":"table","sheet":"Summary","address":"A4:B11","rows":8,"cols":2,"values":[["Team Payroll June",9000000],["Maximum Payroll / Budget",11520000],["Proposed Payroll",11520000],["Discretionary Adjustment Amount",14000],["Final Payroll",11534000],["Budget Remaining",-14000],["Budget Utilization %",1.0012152777777779],["Budget Status","EXCEEDED"]]}
+Inspect result written to file: C:\Users\Usuario\AppData\Local\Temp\tmpkn9kefx2\excel-check.xlsx.inspect.ndjson
+team_L-A.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: C:\Users\Usuario\AppData\Local\Temp\tmpkn9kefx2\custom-generated\team_L-A.xlsx.inspect.ndjson
+leadership_review.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: C:\Users\Usuario\AppData\Local\Temp\tmpkn9kefx2\custom-generated\leadership_review.xlsx.inspect.ndjson
+team_L-B.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: C:\Users\Usuario\AppData\Local\Temp\tmpkn9kefx2\custom-generated\team_L-B.xlsx.inspect.ndjson
+team_L-C.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: C:\Users\Usuario\AppData\Local\Temp\tmpkn9kefx2\custom-generated\team_L-C.xlsx.inspect.ndjson
+master_proposal.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: C:\Users\Usuario\AppData\Local\Temp\tmpkn9kefx2\custom-generated\master_proposal.xlsx.inspect.ndjson

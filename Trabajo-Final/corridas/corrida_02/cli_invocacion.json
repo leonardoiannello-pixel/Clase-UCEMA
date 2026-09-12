@@ -1,0 +1,20 @@
+{
+  "argv": [
+    "C:\\Users\\Usuario\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\agente\\cli.py",
+    "consolidate",
+    "--original",
+    "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\corridas\\corrida_01\\ejecucion\\artifacts",
+    "--reviewed",
+    "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z",
+    "--output",
+    "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_consolidacion_20260912T222651631621Z",
+    "--synthetic-data"
+  ],
+  "cwd": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final",
+  "shell": false,
+  "inicio_utc": "2026-09-12T22:26:51.631621+00:00",
+  "password_source": "environment; value not recorded",
+  "fin_utc": "2026-09-12T22:26:52.414982+00:00",
+  "exit_code": 1
+}

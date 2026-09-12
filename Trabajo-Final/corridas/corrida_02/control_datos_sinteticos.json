@@ -1,0 +1,28 @@
+{
+  "procedencia": "Mismos master, manifest e inputs sintéticos de corrida_01; tres reviewed idénticos y uno con ajuste humano y cambios de serialización de fórmulas.",
+  "archivos": [
+    {
+      "archivo": "team_L-A.xlsx",
+      "nuevos_textos_no_formula": [],
+      "dataset": "SYNTHETIC DEMO"
+    },
+    {
+      "archivo": "leadership_review.xlsx",
+      "nuevos_textos_no_formula": [],
+      "dataset": "SYNTHETIC DEMO"
+    },
+    {
+      "archivo": "team_L-B.xlsx",
+      "nuevos_textos_no_formula": [],
+      "dataset": "SYNTHETIC DEMO"
+    },
+    {
+      "archivo": "team_L-C.xlsx",
+      "nuevos_textos_no_formula": [],
+      "dataset": "SYNTHETIC DEMO"
+    }
+  ],
+  "datos_salariales_reales_detectados": false,
+  "alcance": "Verificación de procedencia, etiquetas y ausencia de nuevos textos de negocio en celdas. No constituye un detector universal de confidencialidad.",
+  "metadata": "El archivo guardado en Excel contiene metadatos de autor/última modificación. Se preservan en la copia exacta; no se usan para autenticar al revisor ni atribuir L-A a una identidad real."
+}

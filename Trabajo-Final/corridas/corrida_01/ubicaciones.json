@@ -1,0 +1,9 @@
+{
+  "ejecucion_original": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_01_20260912T220346711950Z",
+  "copia_evidencia": "ejecucion",
+  "criterio": "Copias byte a byte. Los paths absolutos emitidos se conservan como evidencia, no se reescriben.",
+  "excluidos": [
+    "__pycache__",
+    "*.pyc"
+  ]
+}

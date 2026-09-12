@@ -1,0 +1,18 @@
+test_approval_metrics (test_evidencia.EvidenceTests.test_approval_metrics) ... ok
+test_cache_separate_from_results (test_evidencia.EvidenceTests.test_cache_separate_from_results) ... ok
+test_human_adjustment (test_evidencia.EvidenceTests.test_human_adjustment) ... ok
+test_no_false_final_or_budget (test_evidencia.EvidenceTests.test_no_false_final_or_budget) ... ok
+test_original_hashes (test_evidencia.EvidenceTests.test_original_hashes) ... ok
+test_password_control (test_evidencia.EvidenceTests.test_password_control) ... ok
+test_preserved_reviewed (test_evidencia.EvidenceTests.test_preserved_reviewed) ... ok
+test_prompt_hashes (test_evidencia.EvidenceTests.test_prompt_hashes) ... ok
+test_proposed_preserved (test_evidencia.EvidenceTests.test_proposed_preserved) ... ok
+test_protected_rejection_explained (test_evidencia.EvidenceTests.test_protected_rejection_explained) ... ok
+test_real_rejection (test_evidencia.EvidenceTests.test_real_rejection) ... ok
+test_synthetic_provenance (test_evidencia.EvidenceTests.test_synthetic_provenance) ... ok
+test_untouched_sources (test_evidencia.EvidenceTests.test_untouched_sources) ... ok
+
+----------------------------------------------------------------------
+Ran 13 tests in 0.034s
+
+OK

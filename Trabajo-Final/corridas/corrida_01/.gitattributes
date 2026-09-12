@@ -1,0 +1,2 @@
+# Evidence is preserved byte-for-byte, including emitted JSON and prompt copies.
+* -text whitespace=cr-at-eol

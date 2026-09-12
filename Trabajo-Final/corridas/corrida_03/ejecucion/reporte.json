@@ -1,0 +1,154 @@
+{
+  "estado": "CONSOLIDATED_WITH_EXCEPTIONS",
+  "operacion": "consolidate",
+  "tipo_ejecucion": "WORKFLOW_DETERMINISTICO",
+  "fecha_utc": "2026-09-12T22:51:42.370842+00:00",
+  "inputs_procesados": [
+    {
+      "tipo": "original_manifest",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\corridas\\corrida_01\\ejecucion\\artifacts\\manifest.json",
+      "sha256": "910bea47d1811351d22c51c38acb1805fa985fd282f80d18d3c07d52d1d1b737"
+    },
+    {
+      "tipo": "original_master",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\corridas\\corrida_01\\ejecucion\\artifacts\\master_proposal.xlsx",
+      "sha256": "a261508df718148fcaadefcce25b1ee8d49e7dc1e0c457d1310e30f2b9b57d3d"
+    },
+    {
+      "tipo": "reviewed/leadership_review.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\leadership_review.xlsx",
+      "sha256": "586e2b90ca466df3403d7a829876dd3ce1e11be6c622871c09d1392ed646a259"
+    },
+    {
+      "tipo": "reviewed/team_L-A.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-A.xlsx",
+      "sha256": "cad0aa6f7f871514ea45a9c197b8cb57884b0830915c90bbc55fc1add13708ba"
+    },
+    {
+      "tipo": "reviewed/team_L-B.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-B.xlsx",
+      "sha256": "40fa803a36d442b6d1c0ec22f6cc97051c45f34a87339fe93e3a6f1d656b564a"
+    },
+    {
+      "tipo": "reviewed/team_L-C.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-C.xlsx",
+      "sha256": "df85672740a96fe7bd0ba61a915a4506ba7de3aed74bb1c715e112aba30f2317"
+    }
+  ],
+  "outputs_generados": [
+    {
+      "archivo": "artifacts\\consolidated_final.xlsx",
+      "sha256": "043ab2efec9ceae96b41276144951ba1756eb637a468037fcb40872226db10c3"
+    },
+    {
+      "archivo": "artifacts\\validation_exceptions.json",
+      "sha256": "f1287bb8d0f5835cb18cf634292bf45097a05ac9999160062b6806b487a6206c"
+    }
+  ],
+  "excepciones": [
+    {
+      "group": "Team Alpha",
+      "flag": "BUDGET_EXCEEDED",
+      "amount": 14000.0
+    },
+    {
+      "group": "Team Gamma",
+      "flag": "BUDGET_EXCEEDED",
+      "amount": 522000.0
+    },
+    {
+      "employee_id": "B004",
+      "flag": "MARKET_DATA_MISSING"
+    },
+    {
+      "employee_id": "C001",
+      "flag": "BUDGET_INSUFICIENTE"
+    },
+    {
+      "employee_id": "C002",
+      "flag": "BUDGET_INSUFICIENTE"
+    },
+    {
+      "employee_id": "C003",
+      "flag": "BUDGET_INSUFICIENTE"
+    },
+    {
+      "employee_id": "C004",
+      "flag": "BUDGET_INSUFICIENTE"
+    },
+    {
+      "employee_id": "C005",
+      "flag": "BUDGET_INSUFICIENTE"
+    }
+  ],
+  "budgets": [
+    {
+      "pool": "Team Alpha",
+      "payroll_june": 9000000,
+      "maximum_payroll": 11520000,
+      "proposed_payroll": 11520000,
+      "final_payroll": 11534000,
+      "budget_remaining": -14000,
+      "budget_status": "EXCEEDED"
+    },
+    {
+      "pool": "Leadership",
+      "payroll_june": 11700000,
+      "maximum_payroll": 14040000,
+      "proposed_payroll": 14038500,
+      "final_payroll": 14038500,
+      "budget_remaining": 1500,
+      "budget_status": "OK"
+    },
+    {
+      "pool": "Team Beta",
+      "payroll_june": 9100000,
+      "maximum_payroll": 10738000,
+      "proposed_payroll": 10736500,
+      "final_payroll": 10736500,
+      "budget_remaining": 1500,
+      "budget_status": "OK"
+    },
+    {
+      "pool": "Team Gamma",
+      "payroll_june": 8000000,
+      "maximum_payroll": 8800000,
+      "proposed_payroll": 9322000,
+      "final_payroll": 9322000,
+      "budget_remaining": -522000,
+      "budget_status": "EXCEEDED"
+    }
+  ],
+  "archivos_revision": [
+    {
+      "archivo": "team_L-A.xlsx",
+      "reviewer_id": "L-A",
+      "sha256": "cad0aa6f7f871514ea45a9c197b8cb57884b0830915c90bbc55fc1add13708ba"
+    },
+    {
+      "archivo": "leadership_review.xlsx",
+      "reviewer_id": "CEO001",
+      "sha256": "586e2b90ca466df3403d7a829876dd3ce1e11be6c622871c09d1392ed646a259"
+    },
+    {
+      "archivo": "team_L-B.xlsx",
+      "reviewer_id": "L-B",
+      "sha256": "40fa803a36d442b6d1c0ec22f6cc97051c45f34a87339fe93e3a6f1d656b564a"
+    },
+    {
+      "archivo": "team_L-C.xlsx",
+      "reviewer_id": "L-C",
+      "sha256": "df85672740a96fe7bd0ba61a915a4506ba7de3aed74bb1c715e112aba30f2317"
+    }
+  ],
+  "estado_aprobacion": "PENDING_HUMAN_APPROVAL",
+  "proximo_paso_requerido": "Responsable de Compensation / autoridad autorizada: validar budgets y resolver la aprobación final.",
+  "llm_invocado": false,
+  "modelo": null,
+  "tokens": null,
+  "costo_llm": null,
+  "datos_declarados_sinteticos": true,
+  "confidencialidad_verificada_automaticamente": false,
+  "workflow_version": "V4.1",
+  "tool_exit_code": 0
+}

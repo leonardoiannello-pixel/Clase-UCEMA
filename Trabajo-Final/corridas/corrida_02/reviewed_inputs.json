@@ -1,0 +1,34 @@
+[
+  {
+    "archivo": "team_L-A.xlsx",
+    "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-A.xlsx",
+    "copia": "reviewed/team_L-A.xlsx",
+    "sha256": "cad0aa6f7f871514ea45a9c197b8cb57884b0830915c90bbc55fc1add13708ba",
+    "original_sha256": "1fd73ca9fa45f8a48e65f09c3f881e920adccda4f6c7188768e16aabb4b1da16",
+    "bytes_distintos_del_original": true
+  },
+  {
+    "archivo": "team_L-B.xlsx",
+    "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-B.xlsx",
+    "copia": "reviewed/team_L-B.xlsx",
+    "sha256": "40fa803a36d442b6d1c0ec22f6cc97051c45f34a87339fe93e3a6f1d656b564a",
+    "original_sha256": "40fa803a36d442b6d1c0ec22f6cc97051c45f34a87339fe93e3a6f1d656b564a",
+    "bytes_distintos_del_original": false
+  },
+  {
+    "archivo": "team_L-C.xlsx",
+    "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-C.xlsx",
+    "copia": "reviewed/team_L-C.xlsx",
+    "sha256": "df85672740a96fe7bd0ba61a915a4506ba7de3aed74bb1c715e112aba30f2317",
+    "original_sha256": "df85672740a96fe7bd0ba61a915a4506ba7de3aed74bb1c715e112aba30f2317",
+    "bytes_distintos_del_original": false
+  },
+  {
+    "archivo": "leadership_review.xlsx",
+    "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\leadership_review.xlsx",
+    "copia": "reviewed/leadership_review.xlsx",
+    "sha256": "586e2b90ca466df3403d7a829876dd3ce1e11be6c622871c09d1392ed646a259",
+    "original_sha256": "586e2b90ca466df3403d7a829876dd3ce1e11be6c622871c09d1392ed646a259",
+    "bytes_distintos_del_original": false
+  }
+]

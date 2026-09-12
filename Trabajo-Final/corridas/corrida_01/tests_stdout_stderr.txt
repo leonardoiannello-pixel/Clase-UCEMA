@@ -1,0 +1,15 @@
+test_approval_and_unexposed_metrics (test_evidencia.EvidenceTests.test_approval_and_unexposed_metrics) ... ok
+test_budgets_and_exceptions_from_outputs (test_evidencia.EvidenceTests.test_budgets_and_exceptions_from_outputs) ... ok
+test_effective_prompts_exact (test_evidencia.EvidenceTests.test_effective_prompts_exact) ... ok
+test_formula_cache_no_errors (test_evidencia.EvidenceTests.test_formula_cache_no_errors) ... ok
+test_inputs_exact_synthetic_catalog (test_evidencia.EvidenceTests.test_inputs_exact_synthetic_catalog) ... ok
+test_only_adjustment_editable_and_zero (test_evidencia.EvidenceTests.test_only_adjustment_editable_and_zero) ... ok
+test_output_hashes_and_no_consolidation (test_evidencia.EvidenceTests.test_output_hashes_and_no_consolidation) ... ok
+test_password_capture_control (test_evidencia.EvidenceTests.test_password_capture_control) ... ok
+test_proposal_matches_validated_v4_values (test_evidencia.EvidenceTests.test_proposal_matches_validated_v4_values) ... ok
+test_real_cli_report_and_exit (test_evidencia.EvidenceTests.test_real_cli_report_and_exit) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.109s
+
+OK

@@ -1,0 +1,17 @@
+{
+  "argv": [
+    "C:\\Users\\Usuario\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\agente\\cli.py",
+    "generate",
+    "--output",
+    "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_01_20260912T220346711950Z",
+    "--synthetic-data"
+  ],
+  "cwd": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final",
+  "shell": false,
+  "inicio_utc": "2026-09-12T22:03:46.712952+00:00",
+  "fin_utc": "2026-09-12T22:03:50.446592+00:00",
+  "exit_code": 0,
+  "stdout": "cli_stdout.txt",
+  "stderr": "cli_stderr.txt"
+}

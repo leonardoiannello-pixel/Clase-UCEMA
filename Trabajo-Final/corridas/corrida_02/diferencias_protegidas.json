@@ -1,0 +1,93 @@
+[
+  {
+    "archivo": "team_L-A.xlsx",
+    "celda": "Detail!S2",
+    "original": "=IF(AND(ISNUMBER(R2),R2>='Summary'!$B$13,R2<='Summary'!$B$14,ROUND(R2,4)=R2,ROUND(P2+R2,4)>=W2,ROUND(H2*(1+ROUND(P2+R2,4)),-2)>=X2),ROUND(P2+R2,4),NA())",
+    "reviewed": "=IF(AND(ISNUMBER(R2),R2>=Summary!$B$13,R2<=Summary!$B$14,ROUND(R2,4)=R2,ROUND(P2+R2,4)>=W2,ROUND(H2*(1+ROUND(P2+R2,4)),-2)>=X2),ROUND(P2+R2,4),NA())",
+    "solo_comillas_referencia_hoja": true
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "celda": "Detail!S3",
+    "original": "=IF(AND(ISNUMBER(R3),R3>='Summary'!$B$13,R3<='Summary'!$B$14,ROUND(R3,4)=R3,ROUND(P3+R3,4)>=W3,ROUND(H3*(1+ROUND(P3+R3,4)),-2)>=X3),ROUND(P3+R3,4),NA())",
+    "reviewed": "=IF(AND(ISNUMBER(R3),R3>=Summary!$B$13,R3<=Summary!$B$14,ROUND(R3,4)=R3,ROUND(P3+R3,4)>=W3,ROUND(H3*(1+ROUND(P3+R3,4)),-2)>=X3),ROUND(P3+R3,4),NA())",
+    "solo_comillas_referencia_hoja": true
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "celda": "Detail!S4",
+    "original": "=IF(AND(ISNUMBER(R4),R4>='Summary'!$B$13,R4<='Summary'!$B$14,ROUND(R4,4)=R4,ROUND(P4+R4,4)>=W4,ROUND(H4*(1+ROUND(P4+R4,4)),-2)>=X4),ROUND(P4+R4,4),NA())",
+    "reviewed": "=IF(AND(ISNUMBER(R4),R4>=Summary!$B$13,R4<=Summary!$B$14,ROUND(R4,4)=R4,ROUND(P4+R4,4)>=W4,ROUND(H4*(1+ROUND(P4+R4,4)),-2)>=X4),ROUND(P4+R4,4),NA())",
+    "solo_comillas_referencia_hoja": true
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "celda": "Detail!S5",
+    "original": "=IF(AND(ISNUMBER(R5),R5>='Summary'!$B$13,R5<='Summary'!$B$14,ROUND(R5,4)=R5,ROUND(P5+R5,4)>=W5,ROUND(H5*(1+ROUND(P5+R5,4)),-2)>=X5),ROUND(P5+R5,4),NA())",
+    "reviewed": "=IF(AND(ISNUMBER(R5),R5>=Summary!$B$13,R5<=Summary!$B$14,ROUND(R5,4)=R5,ROUND(P5+R5,4)>=W5,ROUND(H5*(1+ROUND(P5+R5,4)),-2)>=X5),ROUND(P5+R5,4),NA())",
+    "solo_comillas_referencia_hoja": true
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "celda": "Detail!S6",
+    "original": "=IF(AND(ISNUMBER(R6),R6>='Summary'!$B$13,R6<='Summary'!$B$14,ROUND(R6,4)=R6,ROUND(P6+R6,4)>=W6,ROUND(H6*(1+ROUND(P6+R6,4)),-2)>=X6),ROUND(P6+R6,4),NA())",
+    "reviewed": "=IF(AND(ISNUMBER(R6),R6>=Summary!$B$13,R6<=Summary!$B$14,ROUND(R6,4)=R6,ROUND(P6+R6,4)>=W6,ROUND(H6*(1+ROUND(P6+R6,4)),-2)>=X6),ROUND(P6+R6,4),NA())",
+    "solo_comillas_referencia_hoja": true
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "celda": "Detail!V2",
+    "original": "=Y2&IF(AND(ISNUMBER(R2),R2>='Summary'!$B$13,R2<='Summary'!$B$14,ROUND(R2,4)=R2,ROUND(P2+R2,4)>=W2,ROUND(H2*(1+ROUND(P2+R2,4)),-2)>=X2),\"\",\";INVALID_ADJUSTMENT\")",
+    "reviewed": "=Y2&IF(AND(ISNUMBER(R2),R2>=Summary!$B$13,R2<=Summary!$B$14,ROUND(R2,4)=R2,ROUND(P2+R2,4)>=W2,ROUND(H2*(1+ROUND(P2+R2,4)),-2)>=X2),\"\",\";INVALID_ADJUSTMENT\")",
+    "solo_comillas_referencia_hoja": true
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "celda": "Detail!V3",
+    "original": "=Y3&IF(AND(ISNUMBER(R3),R3>='Summary'!$B$13,R3<='Summary'!$B$14,ROUND(R3,4)=R3,ROUND(P3+R3,4)>=W3,ROUND(H3*(1+ROUND(P3+R3,4)),-2)>=X3),\"\",\";INVALID_ADJUSTMENT\")",
+    "reviewed": "=Y3&IF(AND(ISNUMBER(R3),R3>=Summary!$B$13,R3<=Summary!$B$14,ROUND(R3,4)=R3,ROUND(P3+R3,4)>=W3,ROUND(H3*(1+ROUND(P3+R3,4)),-2)>=X3),\"\",\";INVALID_ADJUSTMENT\")",
+    "solo_comillas_referencia_hoja": true
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "celda": "Detail!V4",
+    "original": "=Y4&IF(AND(ISNUMBER(R4),R4>='Summary'!$B$13,R4<='Summary'!$B$14,ROUND(R4,4)=R4,ROUND(P4+R4,4)>=W4,ROUND(H4*(1+ROUND(P4+R4,4)),-2)>=X4),\"\",\";INVALID_ADJUSTMENT\")",
+    "reviewed": "=Y4&IF(AND(ISNUMBER(R4),R4>=Summary!$B$13,R4<=Summary!$B$14,ROUND(R4,4)=R4,ROUND(P4+R4,4)>=W4,ROUND(H4*(1+ROUND(P4+R4,4)),-2)>=X4),\"\",\";INVALID_ADJUSTMENT\")",
+    "solo_comillas_referencia_hoja": true
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "celda": "Detail!V5",
+    "original": "=Y5&IF(AND(ISNUMBER(R5),R5>='Summary'!$B$13,R5<='Summary'!$B$14,ROUND(R5,4)=R5,ROUND(P5+R5,4)>=W5,ROUND(H5*(1+ROUND(P5+R5,4)),-2)>=X5),\"\",\";INVALID_ADJUSTMENT\")",
+    "reviewed": "=Y5&IF(AND(ISNUMBER(R5),R5>=Summary!$B$13,R5<=Summary!$B$14,ROUND(R5,4)=R5,ROUND(P5+R5,4)>=W5,ROUND(H5*(1+ROUND(P5+R5,4)),-2)>=X5),\"\",\";INVALID_ADJUSTMENT\")",
+    "solo_comillas_referencia_hoja": true
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "celda": "Detail!V6",
+    "original": "=Y6&IF(AND(ISNUMBER(R6),R6>='Summary'!$B$13,R6<='Summary'!$B$14,ROUND(R6,4)=R6,ROUND(P6+R6,4)>=W6,ROUND(H6*(1+ROUND(P6+R6,4)),-2)>=X6),\"\",\";INVALID_ADJUSTMENT\")",
+    "reviewed": "=Y6&IF(AND(ISNUMBER(R6),R6>=Summary!$B$13,R6<=Summary!$B$14,ROUND(R6,4)=R6,ROUND(P6+R6,4)>=W6,ROUND(H6*(1+ROUND(P6+R6,4)),-2)>=X6),\"\",\";INVALID_ADJUSTMENT\")",
+    "solo_comillas_referencia_hoja": true
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "celda": "Summary!B4",
+    "original": "=SUM('Detail'!H2:H6)",
+    "reviewed": "=SUM(Detail!H2:H6)",
+    "solo_comillas_referencia_hoja": true
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "celda": "Summary!B6",
+    "original": "=SUM('Detail'!Q2:Q6)",
+    "reviewed": "=SUM(Detail!Q2:Q6)",
+    "solo_comillas_referencia_hoja": true
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "celda": "Summary!B8",
+    "original": "=SUM('Detail'!T2:T6)",
+    "reviewed": "=SUM(Detail!T2:T6)",
+    "solo_comillas_referencia_hoja": true
+  }
+]

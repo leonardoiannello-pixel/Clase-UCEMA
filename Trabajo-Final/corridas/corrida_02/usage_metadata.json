@@ -1,0 +1,19 @@
+{
+  "tipo": "auditoria_posterior_de_metadata_del_host",
+  "corrida": 2,
+  "turn_window_utc": "2026-09-12T22:24:15Z/2026-09-12T22:34:48Z",
+  "modelo_verificable": "gpt-6-astra",
+  "effort": "low",
+  "input_total": 1265275,
+  "input_cached": 1221632,
+  "input_no_cacheado": 43643,
+  "output": 13851,
+  "reasoning_output_tokens": 766,
+  "cache_write_input_tokens": 0,
+  "total": 1279126,
+  "scope": "turno completo de Codex asociado a la corrida; incluye contexto, coordinación, herramientas, validación, documentación y publicación; no equivale exclusivamente al subprocess consolidate",
+  "fuente_local": "C:\\Users\\Usuario\\.codex\\sessions\\2026\\09\\12\\rollout-2026-09-12T15-44-38-01a096ef-9206-7951-b814-6eeb3326933f.jsonl",
+  "token_usage_record_line": 1062,
+  "corroboracion": "state_5.sqlite, tabla threads",
+  "metodo": "asociación por turn_id, pedido del usuario, invocación y timestamps; sin estimaciones ni tokenizer"
+}

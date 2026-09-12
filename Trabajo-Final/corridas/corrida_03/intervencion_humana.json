@@ -1,0 +1,13 @@
+{
+  "intervencion_humana_real": true,
+  "fuente_declaracion": "Mensaje del usuario en esta conversación",
+  "archivo": "team_L-A.xlsx",
+  "employee_id": "A001",
+  "campo": "Discretionary Adjustment %",
+  "valor_observado": 0.01,
+  "unidad_almacenada": "fracción; multiplicar por 100 para puntos porcentuales",
+  "origen": "Edición manual en Excel fuera del agente, según declaración del usuario",
+  "decidida_por_agente": false,
+  "identidad_real": null,
+  "aclaracion": "La declaración humana y el valor observado son evidencias distintas. reviewer_id es routing sintético, no autenticación ni identidad real."
+}

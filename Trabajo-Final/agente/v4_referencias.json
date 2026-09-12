@@ -1,0 +1,36 @@
+{
+  "source_commit": "2c55ad6fb9862203d534892e55087c4016479661",
+  "path_base": "Trabajo-Final",
+  "files": {
+    "workflow.py": {
+      "path": "../Entrega-2/v4/workflow.py",
+      "kind": "unchanged_executable",
+      "sha256": "b2f1199ab733a14e851b5a5dc26682a4aa2a795caf531880191253def1f73a52",
+      "hash_mode": "lf_for_text"
+    },
+    "engine.py": {
+      "path": "../Entrega-2/v4/engine.py",
+      "kind": "unchanged_executable",
+      "sha256": "2d0530e451f2f66abcfa78bd061ce4a38d22e45295f196432ae7cf81df288a65",
+      "hash_mode": "lf_for_text"
+    },
+    "protection.py": {
+      "path": "../Entrega-2/v4/protection.py",
+      "kind": "unchanged_executable",
+      "sha256": "93873a6423e09206886c3b85b556d83cde4a1b74d7f7b8840901d47f5a061983",
+      "hash_mode": "lf_for_text"
+    },
+    "render.mjs": {
+      "path": "../Entrega-2/v4/render.mjs",
+      "kind": "unchanged_executable",
+      "sha256": "8a4bc3e506850fd0bc5a1285b1167c92cf7b5e9f032bb869bcc4f0cfdfe798e9",
+      "hash_mode": "lf_for_text"
+    },
+    "requirements.txt": {
+      "path": "../Entrega-2/v4/requirements.txt",
+      "kind": "unchanged_executable",
+      "sha256": "9bba605fd7b6ea23038de15e5a1ae6714b3d3fb14ed2d6e6bedbfb0665ca2122",
+      "hash_mode": "lf_for_text"
+    }
+  }
+}

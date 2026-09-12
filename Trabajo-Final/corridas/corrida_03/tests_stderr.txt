@@ -1,0 +1,13 @@
+test_approval_and_metadata (test_evidencia.RunEvidenceTests.test_approval_and_metadata) ... ok
+test_budget_recalculated_excess_reported_without_reduction (test_evidencia.RunEvidenceTests.test_budget_recalculated_excess_reported_without_reduction) ... ok
+test_only_observed_adjustment_affects_final (test_evidencia.RunEvidenceTests.test_only_observed_adjustment_affects_final) ... ok
+test_proposal_and_protected_components_preserved (test_evidencia.RunEvidenceTests.test_proposal_and_protected_components_preserved) ... ok
+test_quote_false_positives_no_longer_block (test_evidencia.RunEvidenceTests.test_quote_false_positives_no_longer_block) ... ok
+test_real_execution_version_and_outputs (test_evidencia.RunEvidenceTests.test_real_execution_version_and_outputs) ... ok
+test_same_original_and_reviewed_bytes (test_evidencia.RunEvidenceTests.test_same_original_and_reviewed_bytes) ... ok
+test_sources_and_prompts_preserved (test_evidencia.RunEvidenceTests.test_sources_and_prompts_preserved) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.050s
+
+OK

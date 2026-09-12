@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "C:\Users\Usuario\Documents\Codex\2026-09-12\files-pasted-by-the-user-estoy\work\Clase-UCEMA\Trabajo-Final\ejecuciones\corrida_02_consolidacion_20260912T222651631621Z\runtime\v4\workflow.py", line 289, in <module>
+    main()
+  File "C:\Users\Usuario\Documents\Codex\2026-09-12\files-pasted-by-the-user-estoy\work\Clase-UCEMA\Trabajo-Final\ejecuciones\corrida_02_consolidacion_20260912T222651631621Z\runtime\v4\workflow.py", line 285, in main
+    consolidate(args.original, args.reviewed, args.output, args.password)
+  File "C:\Users\Usuario\Documents\Codex\2026-09-12\files-pasted-by-the-user-estoy\work\Clase-UCEMA\Trabajo-Final\ejecuciones\corrida_02_consolidacion_20260912T222651631621Z\runtime\v4\workflow.py", line 239, in consolidate
+    raise ValueError('Consolidation rejected; see validation_exceptions.json')
+ValueError: Consolidation rejected; see validation_exceptions.json

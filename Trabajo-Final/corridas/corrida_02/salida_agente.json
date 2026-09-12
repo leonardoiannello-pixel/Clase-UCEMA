@@ -1,0 +1,22 @@
+{
+  "tipo": "Respuesta estructurada del agente tras observar la ejecución; no reporte del CLI ni exportación de API",
+  "estado": "REJECTED",
+  "inputs_procesados": {"original": "original_confiable.json", "reviewed": "reviewed_inputs.json", "alcance": "Cuatro archivos efectivamente usados y preservados byte a byte; original de Corrida 1 intacto"},
+  "outputs_generados": ["ejecucion/reporte.json", "ejecucion/artifacts/validation_exceptions.json", "ejecucion/tool_invocation.json", "ejecucion/tool_stdout.txt", "ejecucion/tool_stderr.txt"],
+  "consolidated_final": null,
+  "excepciones": {"codigo": "PROTECTED_FIELD_CHANGED", "cantidad": 13, "archivo": "team_L-A.xlsx", "detalle": "diferencias_protegidas.json", "observacion": "En todas las diferencias de fórmulas sólo desaparecen comillas en referencias a hojas; compatible con guardado en Excel, sin atribuir intención al humano"},
+  "budgets": [],
+  "budgets_recalculados_por_consolidacion": false,
+  "archivos_revision": ["reviewed/team_L-A.xlsx", "reviewed/team_L-B.xlsx", "reviewed/team_L-C.xlsx", "reviewed/leadership_review.xlsx"],
+  "intervencion_humana": {"employee_id": "A001", "valor_observado": 0.01, "puntos_porcentuales": 1.0, "decidida_por_agente": false, "identidad_real": null},
+  "observacion_cache_excel_no_validada_por_consolidacion": {"a001_final_salary": 1937600, "a001_final_compa_ratio": 0.8970370370370371, "alpha_final_payroll": 11534000, "alpha_maximum_payroll": 11520000, "alpha_exceso": 14000, "alpha_budget_status": "EXCEEDED"},
+  "estado_aprobacion": "PENDING_HUMAN_APPROVAL",
+  "proximo_paso_requerido": "Compensation/coordinador: resolver la incompatibilidad de representación de fórmulas con una corrección autorizada y una nueva ejecución; conservar este rechazo. No aprobar salarios ni excesos.",
+  "host": "Codex desktop",
+  "modelo": null,
+  "input_tokens": null,
+  "cached_input_tokens": null,
+  "output_tokens": null,
+  "usage_metadata": null,
+  "costo": null
+}

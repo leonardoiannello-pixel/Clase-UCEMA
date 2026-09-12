@@ -1,0 +1,146 @@
+[
+  {
+    "archivo": "team_L-A.xlsx",
+    "employee_id": "A001",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": 0.8905555555555555,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "employee_id": "A002",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": 0.974212962962963,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "employee_id": "A003",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": 1.0960185185185185,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "employee_id": "A004",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": 1.0,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  },
+  {
+    "archivo": "team_L-A.xlsx",
+    "employee_id": "A005",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": 0.92646875,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  },
+  {
+    "archivo": "leadership_review.xlsx",
+    "employee_id": "L-A",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": 0.9969534883720931,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  },
+  {
+    "archivo": "leadership_review.xlsx",
+    "employee_id": "L-B",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": 0.9513617021276596,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  },
+  {
+    "archivo": "leadership_review.xlsx",
+    "employee_id": "L-C",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": 1.015423076923077,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  },
+  {
+    "archivo": "team_L-B.xlsx",
+    "employee_id": "B001",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": 0.7127916666666667,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  },
+  {
+    "archivo": "team_L-B.xlsx",
+    "employee_id": "B002",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": 0.77275,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  },
+  {
+    "archivo": "team_L-B.xlsx",
+    "employee_id": "B003",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": 1.0205833333333334,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  },
+  {
+    "archivo": "team_L-B.xlsx",
+    "employee_id": "B004",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": null,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  },
+  {
+    "archivo": "team_L-B.xlsx",
+    "employee_id": "B005",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": 1.125,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  },
+  {
+    "archivo": "team_L-C.xlsx",
+    "employee_id": "C001",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": 0.82,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  },
+  {
+    "archivo": "team_L-C.xlsx",
+    "employee_id": "C002",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": 0.7907142857142857,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  },
+  {
+    "archivo": "team_L-C.xlsx",
+    "employee_id": "C003",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": 0.8363636363636363,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  },
+  {
+    "archivo": "team_L-C.xlsx",
+    "employee_id": "C004",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": 0.84,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  },
+  {
+    "archivo": "team_L-C.xlsx",
+    "employee_id": "C005",
+    "salario_sin_cambio": true,
+    "aumento_sin_cambio": true,
+    "compa_original": 0.72,
+    "nota_compa": "No hay columna Proposed Compa Ratio separada en reviewed; manifest original intacto, no se produjo consolidado para compararla."
+  }
+]
