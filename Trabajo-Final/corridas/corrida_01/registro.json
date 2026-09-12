@@ -1,0 +1,41 @@
+{
+  "estado": "PENDIENTE_NO_EJECUTADA",
+  "fecha_utc": null,
+  "modelo": null,
+  "proveedor": null,
+  "system_prompt": {
+    "referencia_plantilla": "../../prompts/system_prompt.md",
+    "archivo_efectivamente_usado": null,
+    "sha256": null
+  },
+  "user_prompt": {
+    "referencia_plantilla": "../../prompts/user_prompt.md",
+    "archivo_efectivamente_usado": null,
+    "sha256": null
+  },
+  "inputs": [],
+  "tool_invocations": [],
+  "salida_del_agente": null,
+  "archivos_generados": [],
+  "excepciones": null,
+  "tokens": {
+    "input_total": null,
+    "input_cached": null,
+    "output": null,
+    "fuente_medicion": null
+  },
+  "precio": {
+    "moneda": null,
+    "input_por_millon": null,
+    "cached_por_millon": null,
+    "output_por_millon": null,
+    "fecha": null,
+    "fuente": null
+  },
+  "costo_por_corrida": null,
+  "frecuencia_anual": null,
+  "proyeccion_anual": null,
+  "intervenciones_humanas": null,
+  "estado_aprobacion": null,
+  "observaciones": "Plantilla pendiente. No acredita ejecución, uso de modelo ni decisiones humanas."
+}
