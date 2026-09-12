@@ -1,0 +1,14 @@
+{
+  "fecha_utc": "2026-09-12T22:08:38.955211+00:00",
+  "base_commit": "d9ef9d5554e0e0cbbe6ff89473b9805a015e32f8",
+  "archivos_preexistentes_fuera_de_corrida01_sin_cambios": 77,
+  "v1_v2_v3_v4_intactas": true,
+  "corrida02_corrida03_intactas": true,
+  "tests_lectura_evidencia": 10,
+  "resultado_tests": "OK",
+  "origen_datos": "SHA256 exactos del catálogo sintético y propuestas idénticas a la demo V4 validada, comprobado en tests.",
+  "claves_api_o_privadas_detectadas": false,
+  "control_password_en_claro": "control_password.json",
+  "archivos_posteriores_control_password": "Respuesta del agente, observaciones, tests, registro e inventario. No contienen ni reciben el valor efímero.",
+  "limite": "La revisión acredita procedencia sintética de esta muestra, no es un detector universal de confidencialidad."
+}

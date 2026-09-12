@@ -1,0 +1,16 @@
+{
+  "host": "Codex desktop",
+  "fuente_host": "Contexto de la sesión de la aplicación",
+  "modo": "Agente Codex en conversación existente, con herramienta local de procesos",
+  "sistema_operativo": "Windows",
+  "python_version": "3.12.14",
+  "node_version": "v24.19.0",
+  "modelo": null,
+  "input_tokens": null,
+  "cached_tokens": null,
+  "output_tokens": null,
+  "usage_metadata": null,
+  "motivo_metricas_null": "El contexto/herramientas de esta ejecución no exponen un identificador exacto verificable del modelo ni usage de la respuesta. No se utilizan contadores de salida de herramientas como tokens del modelo.",
+  "llm_api_adicional_invocada": false,
+  "costo_estimado": null
+}

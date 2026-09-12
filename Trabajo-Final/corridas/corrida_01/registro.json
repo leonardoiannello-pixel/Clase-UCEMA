@@ -1,28 +1,124 @@
 {
-  "estado": "PENDIENTE_NO_EJECUTADA",
-  "fecha_utc": null,
+  "estado": "GENERATED_WITH_EXCEPTIONS",
+  "fecha_utc": "2026-09-12T22:03:46.712952+00:00",
   "modelo": null,
   "proveedor": null,
   "system_prompt": {
     "referencia_plantilla": "../../prompts/system_prompt.md",
-    "archivo_efectivamente_usado": null,
-    "sha256": null
+    "archivo_efectivamente_usado": "prompts/system_prompt.md",
+    "sha256": "8859dfb064b64bb4cff3028187a21e39c1ed6e518a0590ed44e5f38af9349809",
+    "modo_uso": "Leído por el agente Codex como contrato/solicitud de tarea en la sesión actual; no reemplaza el system prompt del host."
   },
   "user_prompt": {
     "referencia_plantilla": "../../prompts/user_prompt.md",
-    "archivo_efectivamente_usado": null,
-    "sha256": null
+    "archivo_efectivamente_usado": "prompts/user_prompt.md",
+    "sha256": "679be7023c47475195681e118d449ddab18c614ea71183da6829058d5f5b45bb",
+    "modo_uso": "Leído por el agente Codex como contrato/solicitud de tarea en la sesión actual; no reemplaza el system prompt del host."
   },
-  "inputs": [],
-  "tool_invocations": [],
-  "salida_del_agente": null,
-  "archivos_generados": [],
-  "excepciones": null,
+  "inputs": [
+    {
+      "tipo": "employees",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Entrega-2\\inputs\\Employees_Input.xlsx",
+      "copia_utilizada": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_01_20260912T220346711950Z\\runtime\\inputs\\Employees_Input.xlsx",
+      "sha256": "ffbe3de403520874924bd4a696e3a78a5a76dfbc46790ab668248e03c64af628",
+      "archivo_evidencia": "ejecucion/runtime/inputs/Employees_Input.xlsx"
+    },
+    {
+      "tipo": "market",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Entrega-2\\inputs\\Market_Data.xlsx",
+      "copia_utilizada": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_01_20260912T220346711950Z\\runtime\\inputs\\Market_Data.xlsx",
+      "sha256": "8c49c32e823ed0a788421cc7d535845cf1efe8a688b3b2d9b0e202efebf56079",
+      "archivo_evidencia": "ejecucion/runtime/inputs/Market_Data.xlsx"
+    },
+    {
+      "tipo": "parameters",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Entrega-2\\v4\\inputs\\Parameters.xlsx",
+      "copia_utilizada": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_01_20260912T220346711950Z\\runtime\\inputs\\Parameters.xlsx",
+      "sha256": "8a23238cd3916de4049e27335ea1f229cad6bc4ecd4cea35bd6b39e5af63d5bc",
+      "archivo_evidencia": "ejecucion/runtime/inputs/Parameters.xlsx"
+    }
+  ],
+  "tool_invocations": [
+    "verificacion_invocacion.json",
+    "cli_invocacion.json",
+    "ejecucion/tool_invocation.json"
+  ],
+  "salida_del_agente": "salida_agente.md",
+  "archivos_generados": [
+    {
+      "archivo": "artifacts\\generation_validation.json",
+      "sha256": "89841891f0b4912662cfa417f86f29b37aae68eb3d47cb4bc970a051d20f04c5",
+      "archivo_evidencia": "ejecucion/artifacts/generation_validation.json"
+    },
+    {
+      "archivo": "artifacts\\leadership_review.xlsx",
+      "sha256": "586e2b90ca466df3403d7a829876dd3ce1e11be6c622871c09d1392ed646a259",
+      "archivo_evidencia": "ejecucion/artifacts/leadership_review.xlsx"
+    },
+    {
+      "archivo": "artifacts\\manifest.json",
+      "sha256": "910bea47d1811351d22c51c38acb1805fa985fd282f80d18d3c07d52d1d1b737",
+      "archivo_evidencia": "ejecucion/artifacts/manifest.json"
+    },
+    {
+      "archivo": "artifacts\\master_proposal.xlsx",
+      "sha256": "a261508df718148fcaadefcce25b1ee8d49e7dc1e0c457d1310e30f2b9b57d3d",
+      "archivo_evidencia": "ejecucion/artifacts/master_proposal.xlsx"
+    },
+    {
+      "archivo": "artifacts\\team_L-A.xlsx",
+      "sha256": "1fd73ca9fa45f8a48e65f09c3f881e920adccda4f6c7188768e16aabb4b1da16",
+      "archivo_evidencia": "ejecucion/artifacts/team_L-A.xlsx"
+    },
+    {
+      "archivo": "artifacts\\team_L-B.xlsx",
+      "sha256": "40fa803a36d442b6d1c0ec22f6cc97051c45f34a87339fe93e3a6f1d656b564a",
+      "archivo_evidencia": "ejecucion/artifacts/team_L-B.xlsx"
+    },
+    {
+      "archivo": "artifacts\\team_L-C.xlsx",
+      "sha256": "df85672740a96fe7bd0ba61a915a4506ba7de3aed74bb1c715e112aba30f2317",
+      "archivo_evidencia": "ejecucion/artifacts/team_L-C.xlsx"
+    }
+  ],
+  "excepciones": [
+    {
+      "group": "Team Beta",
+      "employee_id": "B004",
+      "flag": "MARKET_DATA_MISSING"
+    },
+    {
+      "group": "Team Gamma",
+      "employee_id": "C001",
+      "flag": "BUDGET_INSUFICIENTE"
+    },
+    {
+      "group": "Team Gamma",
+      "employee_id": "C002",
+      "flag": "BUDGET_INSUFICIENTE"
+    },
+    {
+      "group": "Team Gamma",
+      "employee_id": "C003",
+      "flag": "BUDGET_INSUFICIENTE"
+    },
+    {
+      "group": "Team Gamma",
+      "employee_id": "C004",
+      "flag": "BUDGET_INSUFICIENTE"
+    },
+    {
+      "group": "Team Gamma",
+      "employee_id": "C005",
+      "flag": "BUDGET_INSUFICIENTE"
+    }
+  ],
   "tokens": {
     "input_total": null,
     "input_cached": null,
     "output": null,
-    "fuente_medicion": null
+    "fuente_medicion": null,
+    "motivo": "Métricas de modelo no expuestas de manera verificable por este host en la corrida."
   },
   "precio": {
     "moneda": null,
@@ -35,7 +131,101 @@
   "costo_por_corrida": null,
   "frecuencia_anual": null,
   "proyeccion_anual": null,
-  "intervenciones_humanas": null,
-  "estado_aprobacion": null,
-  "observaciones": "Plantilla pendiente. No acredita ejecución, uso de modelo ni decisiones humanas."
+  "intervenciones_humanas": [],
+  "estado_aprobacion": "PENDING_HUMAN_APPROVAL",
+  "observaciones": "Ejecución real de generate coordinada por el agente Codex con datos sintéticos. No se enviaron archivos, no hubo devoluciones ni ajustes humanos. Ver OBSERVACIONES.md. El campo llm_invocado=false del CLI describe al subprocess determinístico, no niega la coordinación del agente en el host.",
+  "operacion": "generate",
+  "ejecucion_real": true,
+  "datos": "SINTETICOS",
+  "fin_utc": "2026-09-12T22:03:50.446592+00:00",
+  "source_commit": "d9ef9d5554e0e0cbbe6ff89473b9805a015e32f8",
+  "host": "Codex desktop",
+  "host_metadata": "host_metadata.json",
+  "reporte_herramienta": "ejecucion/reporte.json",
+  "budgets": [
+    {
+      "pool": "Team Alpha",
+      "payroll_june": 9000000,
+      "maximum_payroll": 11520000,
+      "proposed_payroll": 11520000,
+      "final_payroll": 11520000,
+      "budget_remaining": 0,
+      "budget_status": "OK"
+    },
+    {
+      "pool": "Leadership",
+      "payroll_june": 11700000,
+      "maximum_payroll": 14040000,
+      "proposed_payroll": 14038500,
+      "final_payroll": 14038500,
+      "budget_remaining": 1500,
+      "budget_status": "OK"
+    },
+    {
+      "pool": "Team Beta",
+      "payroll_june": 9100000,
+      "maximum_payroll": 10738000,
+      "proposed_payroll": 10736500,
+      "final_payroll": 10736500,
+      "budget_remaining": 1500,
+      "budget_status": "OK"
+    },
+    {
+      "pool": "Team Gamma",
+      "payroll_june": 8000000,
+      "maximum_payroll": 8800000,
+      "proposed_payroll": 9322000,
+      "final_payroll": 9322000,
+      "budget_remaining": -522000,
+      "budget_status": "EXCEEDED"
+    }
+  ],
+  "archivos_revision": [
+    {
+      "archivo": "team_L-A.xlsx",
+      "pool": "Team Alpha",
+      "reviewer_id": "L-A",
+      "enviado": false
+    },
+    {
+      "archivo": "leadership_review.xlsx",
+      "pool": "Leadership",
+      "reviewer_id": "CEO001",
+      "enviado": false
+    },
+    {
+      "archivo": "team_L-B.xlsx",
+      "pool": "Team Beta",
+      "reviewer_id": "L-B",
+      "enviado": false
+    },
+    {
+      "archivo": "team_L-C.xlsx",
+      "pool": "Team Gamma",
+      "reviewer_id": "L-C",
+      "enviado": false
+    }
+  ],
+  "consolidacion_ejecutada": false,
+  "ajustes_humanos_realizados": false,
+  "tests": {
+    "tipo": "Lectura de evidencia, sin nuevas generaciones/consolidaciones",
+    "command": [
+      "C:\\Users\\Usuario\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "Trabajo-Final/corridas/corrida_01",
+      "-p",
+      "test_evidencia.py",
+      "-v"
+    ],
+    "cwd": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA",
+    "resultado": "OK",
+    "cantidad": 10,
+    "log": "tests_stdout_stderr.txt"
+  },
+  "inventario_evidencia": "inventario_sha256.json",
+  "control_integridad": "control_integridad.json"
 }

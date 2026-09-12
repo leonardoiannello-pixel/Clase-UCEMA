@@ -1,0 +1,14 @@
+{
+  "argv": [
+    "C:\\Users\\Usuario\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\agente\\cli.py",
+    "verify"
+  ],
+  "cwd": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final",
+  "shell": false,
+  "inicio_utc": "2026-09-12T22:03:46.546281+00:00",
+  "fin_utc": "2026-09-12T22:03:46.709938+00:00",
+  "exit_code": 0,
+  "stdout": "verificacion_stdout.txt",
+  "stderr": "verificacion_stderr.txt"
+}

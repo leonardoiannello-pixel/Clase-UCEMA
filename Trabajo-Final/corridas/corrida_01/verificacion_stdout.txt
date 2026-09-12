@@ -1,0 +1,18 @@
+{
+  "estado": "REFERENCES_VERIFIED",
+  "referencias": [
+    "workflow.py",
+    "engine.py",
+    "protection.py",
+    "render.mjs",
+    "requirements.txt",
+    "employees",
+    "market",
+    "parameters"
+  ],
+  "python_openpyxl_disponible": true,
+  "node_executable": "C:\\Users\\Usuario\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\node\\bin\\node.exe",
+  "artifact_tool": "Requiere resolución desde un node_modules ancestro del directorio de ejecución.",
+  "llm_invocado": false,
+  "estado_aprobacion": "PENDING_HUMAN_APPROVAL"
+}

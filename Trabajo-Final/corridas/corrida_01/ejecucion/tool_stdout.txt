@@ -1,0 +1,10 @@
+team_L-A.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: C:\Users\Usuario\Documents\Codex\2026-09-12\files-pasted-by-the-user-estoy\work\Clase-UCEMA\Trabajo-Final\ejecuciones\corrida_01_20260912T220346711950Z\artifacts\team_L-A.xlsx.inspect.ndjson
+leadership_review.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: C:\Users\Usuario\Documents\Codex\2026-09-12\files-pasted-by-the-user-estoy\work\Clase-UCEMA\Trabajo-Final\ejecuciones\corrida_01_20260912T220346711950Z\artifacts\leadership_review.xlsx.inspect.ndjson
+team_L-B.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: C:\Users\Usuario\Documents\Codex\2026-09-12\files-pasted-by-the-user-estoy\work\Clase-UCEMA\Trabajo-Final\ejecuciones\corrida_01_20260912T220346711950Z\artifacts\team_L-B.xlsx.inspect.ndjson
+team_L-C.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: C:\Users\Usuario\Documents\Codex\2026-09-12\files-pasted-by-the-user-estoy\work\Clase-UCEMA\Trabajo-Final\ejecuciones\corrida_01_20260912T220346711950Z\artifacts\team_L-C.xlsx.inspect.ndjson
+master_proposal.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: C:\Users\Usuario\Documents\Codex\2026-09-12\files-pasted-by-the-user-estoy\work\Clase-UCEMA\Trabajo-Final\ejecuciones\corrida_01_20260912T220346711950Z\artifacts\master_proposal.xlsx.inspect.ndjson
