@@ -21,6 +21,16 @@ Cada corrida registra, según corresponda:
 7. estado de aprobación, siempre `PENDING_HUMAN_APPROVAL`;
 8. metadata económica disponible.
 
-El host Codex desktop no expuso de manera verificable contadores de input/cached/output tokens ni el identificador exacto del modelo dentro de la metadata de las corridas. Esos campos permanecen en `null`: no se sustituyen con estimaciones presentadas como medición. La configuración visible informada por el usuario se documenta por separado en el [análisis económico](../docs/ANALISIS_ECONOMICO.md).
+## Metadata de modelo y tokens
+
+En el momento de cada ejecución el host no expuso estas métricas en la salida de la tarea, por lo que los `registro.json` originales conservaron esos campos en `null`. Posteriormente se realizó una auditoría de la metadata local de Codex, **sin reejecutar ninguna corrida**, y se recuperaron métricas verificables para los turnos completos asociados a cada ejecución.
+
+Cada carpeta contiene ahora un `usage_metadata.json` con la evidencia posterior:
+
+- Corrida 1: `gpt-6-astra`, effort `low`, 3.874.830 input, 3.833.728 cached input, 19.644 output, 3.894.474 total.
+- Corrida 2: `gpt-6-astra`, effort `low`, 1.265.275 input, 1.221.632 cached input, 13.851 output, 1.279.126 total.
+- Corrida 3: `gpt-6-astra`, effort `low`, 1.622.409 input, 1.600.128 cached input, 9.627 output, 1.632.036 total.
+
+Estas cifras corresponden al **turno completo de Codex** y no exclusivamente al subprocess `generate`/`consolidate`. Incluyen contexto, coordinación, herramientas, validación, documentación y publicación. La metodología y fuente se explican en [METADATA_USO_CODEX.md](../docs/METADATA_USO_CODEX.md) y en el [análisis económico](../docs/ANALISIS_ECONOMICO.md).
 
 Las contraseñas de protección no se versionan. La intervención humana de Corrida 2/3 se conserva como una edición manual de Excel fuera del agente; el `reviewer_id` sintético no se utiliza como identidad o autenticación.
