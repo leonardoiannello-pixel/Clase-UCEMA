@@ -1,0 +1,14 @@
+[
+  {
+    "archivo": "master_proposal.xlsx",
+    "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\corridas\\corrida_01\\ejecucion\\artifacts\\master_proposal.xlsx",
+    "referencia": "../corrida_01/ejecucion/artifacts/master_proposal.xlsx",
+    "sha256": "a261508df718148fcaadefcce25b1ee8d49e7dc1e0c457d1310e30f2b9b57d3d"
+  },
+  {
+    "archivo": "manifest.json",
+    "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\corridas\\corrida_01\\ejecucion\\artifacts\\manifest.json",
+    "referencia": "../corrida_01/ejecucion/artifacts/manifest.json",
+    "sha256": "910bea47d1811351d22c51c38acb1805fa985fd282f80d18d3c07d52d1d1b737"
+  }
+]

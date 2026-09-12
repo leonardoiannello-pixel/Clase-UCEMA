@@ -1,0 +1,92 @@
+{
+  "state": "REJECTED",
+  "errors": [
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Summary!B6",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Summary!B4",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Summary!B8",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!S4",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!S2",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!V3",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!S5",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!V6",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!V2",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!V4",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!V5",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!S3",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!S6",
+      "error": "PROTECTED_FIELD_CHANGED"
+    }
+  ],
+  "reviewed_files": [
+    {
+      "file": "team_L-A.xlsx",
+      "sha256": "cad0aa6f7f871514ea45a9c197b8cb57884b0830915c90bbc55fc1add13708ba",
+      "reviewer_id": "L-A"
+    },
+    {
+      "file": "leadership_review.xlsx",
+      "sha256": "586e2b90ca466df3403d7a829876dd3ce1e11be6c622871c09d1392ed646a259",
+      "reviewer_id": "CEO001"
+    },
+    {
+      "file": "team_L-B.xlsx",
+      "sha256": "40fa803a36d442b6d1c0ec22f6cc97051c45f34a87339fe93e3a6f1d656b564a",
+      "reviewer_id": "L-B"
+    },
+    {
+      "file": "team_L-C.xlsx",
+      "sha256": "df85672740a96fe7bd0ba61a915a4506ba7de3aed74bb1c715e112aba30f2317",
+      "reviewer_id": "L-C"
+    }
+  ]
+}

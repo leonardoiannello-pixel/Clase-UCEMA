@@ -1,0 +1,117 @@
+{
+  "estado": "REJECTED",
+  "operacion": "consolidate",
+  "tipo_ejecucion": "WORKFLOW_DETERMINISTICO",
+  "fecha_utc": "2026-09-12T22:26:51.772644+00:00",
+  "inputs_procesados": [
+    {
+      "tipo": "original_manifest",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\corridas\\corrida_01\\ejecucion\\artifacts\\manifest.json",
+      "sha256": "910bea47d1811351d22c51c38acb1805fa985fd282f80d18d3c07d52d1d1b737"
+    },
+    {
+      "tipo": "original_master",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\corridas\\corrida_01\\ejecucion\\artifacts\\master_proposal.xlsx",
+      "sha256": "a261508df718148fcaadefcce25b1ee8d49e7dc1e0c457d1310e30f2b9b57d3d"
+    },
+    {
+      "tipo": "reviewed/leadership_review.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\leadership_review.xlsx",
+      "sha256": "586e2b90ca466df3403d7a829876dd3ce1e11be6c622871c09d1392ed646a259"
+    },
+    {
+      "tipo": "reviewed/team_L-A.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-A.xlsx",
+      "sha256": "cad0aa6f7f871514ea45a9c197b8cb57884b0830915c90bbc55fc1add13708ba"
+    },
+    {
+      "tipo": "reviewed/team_L-B.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-B.xlsx",
+      "sha256": "40fa803a36d442b6d1c0ec22f6cc97051c45f34a87339fe93e3a6f1d656b564a"
+    },
+    {
+      "tipo": "reviewed/team_L-C.xlsx",
+      "origen": "C:\\Users\\Usuario\\Documents\\Codex\\2026-09-12\\files-pasted-by-the-user-estoy\\work\\Clase-UCEMA\\Trabajo-Final\\ejecuciones\\corrida_02_devoluciones_20260912T221754742175Z\\team_L-C.xlsx",
+      "sha256": "df85672740a96fe7bd0ba61a915a4506ba7de3aed74bb1c715e112aba30f2317"
+    }
+  ],
+  "outputs_generados": [],
+  "excepciones": [
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Summary!B6",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Summary!B4",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Summary!B8",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!S4",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!S2",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!V3",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!S5",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!V6",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!V2",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!V4",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!V5",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!S3",
+      "error": "PROTECTED_FIELD_CHANGED"
+    },
+    {
+      "file": "team_L-A.xlsx",
+      "cell": "Detail!S6",
+      "error": "PROTECTED_FIELD_CHANGED"
+    }
+  ],
+  "budgets": [],
+  "archivos_revision": [],
+  "estado_aprobacion": "PENDING_HUMAN_APPROVAL",
+  "proximo_paso_requerido": "Responsable de Compensation/coordinador: revisar logs y corregir la causa en una ejecución nueva.",
+  "llm_invocado": false,
+  "modelo": null,
+  "tokens": null,
+  "costo_llm": null,
+  "datos_declarados_sinteticos": true,
+  "confidencialidad_verificada_automaticamente": false,
+  "tool_exit_code": 1
+}
