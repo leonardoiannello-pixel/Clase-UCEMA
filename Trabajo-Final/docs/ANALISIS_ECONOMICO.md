@@ -1,75 +1,93 @@
 # Análisis económico
 
-Este análisis separa tres capas de costo que no deben mezclarse: el workflow determinístico local, la coordinación mediante el host de IA y el tiempo humano. Las tres corridas finales fueron ejecutadas realmente en Codex desktop y quedaron registradas en `corridas/`. El host no expuso de forma verificable los contadores de tokens ni el identificador exacto del modelo en la metadata de las corridas; por eso esos campos permanecen en `null` y no se reconstruyen retrospectivamente.
+Este análisis separa tres capas de costo que no deben mezclarse: el workflow determinístico local, la coordinación mediante el host de IA y el tiempo humano. Las tres corridas finales fueron ejecutadas realmente en Codex desktop y quedaron registradas en `corridas/`.
+
+Después de completar las corridas se auditó la metadata local de Codex **sin reejecutar el agente**. Esa auditoría permitió recuperar modelo y tokens verificables para los turnos completos asociados a Corrida 1, 2 y 3. La evidencia y su alcance están documentados en [METADATA_USO_CODEX.md](METADATA_USO_CODEX.md).
 
 ## 1. Evidencia económica observada
 
-| Variable | Evidencia disponible | Tratamiento |
-|---|---|---|
-| Host de las corridas | Codex desktop | Verificado en los registros de las tres corridas |
-| Modelo seleccionado | `GPT-6 Astra Light`, informado por el usuario como configuración visible en Codex desktop | Declaración del usuario; no se presenta como metadata capturada por el host |
-| Input tokens | No expuestos | `null`; no se estiman como medición |
-| Cached input tokens | No expuestos | `null`; no se estiman como medición |
-| Output tokens | No expuestos | `null`; no se estiman como medición |
-| Pago adicional por las tres corridas | Ninguno | Costo marginal de caja observado: 0 |
-| API paga | No utilizada | No se asigna tarifa API a corridas que no usaron API |
-| Créditos/extends adicionales comprados | Ninguno | Se utilizaron únicamente extends incluidos/disponibles en la cuenta |
-| Suscripción existente | No se imputa por corrida | Es un costo fijo preexistente y no hay una regla objetiva para asignarlo a este workflow |
+El host registró `gpt-6-astra` con `effort: low` en los tres turnos. La denominación visible “GPT-6 Astra Light” fue informada por el usuario, pero para la evidencia técnica se conserva la identificación que aparece en los logs: `gpt-6-astra` + `low`.
 
-Por lo tanto, el **costo marginal de caja efectivamente observado para ejecutar estas tres corridas fue 0**: no se compraron créditos adicionales ni se realizó una llamada paga a una API. Esto no significa que el sistema tenga costo económico total cero. La suscripción existente, el equipo, el tiempo humano, el desarrollo, el mantenimiento, la seguridad y eventuales excesos de uso son costos distintos y no se convierten artificialmente en cero.
+| Corrida | Input total | Cached input | Input no cacheado | Output | Total tokens |
+|---|---:|---:|---:|---:|---:|
+| Corrida 1 | 3.874.830 | 3.833.728 | 41.102 | 19.644 | 3.894.474 |
+| Corrida 2 | 1.265.275 | 1.221.632 | 43.643 | 13.851 | 1.279.126 |
+| Corrida 3 | 1.622.409 | 1.600.128 | 22.281 | 9.627 | 1.632.036 |
+| **Total** | **6.762.514** | **6.655.488** | **107.026** | **43.122** | **6.805.636** |
 
-La ausencia de tokens medidos es una limitación de evidencia, no una razón para inventarlos. El costo API teórico por token queda fuera del cálculo real de estas corridas porque no hubo una factura API asociada ni usage metadata verificable.
+También se registraron `reasoning_output_tokens` de 7.751, 766 y 417 respectivamente, y `cache_write_input_tokens = 0` en los tres turnos.
 
-## 2. Workflow determinístico
+### Qué miden estos tokens
 
-Python y Node realizan localmente el cálculo salarial, generación y protección de Excel, controles de integridad, budgets y consolidación. La interfaz no llama a una API LLM para hacer los cálculos. En consecuencia, el salario final no depende de razonamiento numérico libre del modelo: el modelo coordina y la herramienta determinística es la fuente autoritativa para porcentajes, redondeos, caps, budgets y validaciones.
+Los tokens corresponden al **turno completo de Codex asociado a cada corrida**. Incluyen contexto de conversación, coordinación, herramientas, validaciones, documentación y publicación realizadas durante ese turno. No existe una separación verificable del consumo atribuible exclusivamente al subprocess `generate`/`consolidate` ni sólo a los prompts académicos.
 
-En el dataset DEMO el subprocess local tarda segundos por ejecución. No se transforma esa duración en un costo monetario porque no se midieron consumo de CPU, energía, amortización del equipo ni tarifa de infraestructura. El costo computacional local se considera pequeño para esta escala, pero no se presenta como importe medido.
+Esto hace que la medición sea conservadora para describir el costo de usar el agente en el entorno observado: refleja todo el trabajo de coordinación del turno, pero no debe interpretarse como costo puro del motor determinístico.
 
-## 3. Costo humano
+## 2. Costo monetario observado
 
-El costo humano es probablemente más importante que el costo marginal del modelo en este caso. Incluye preparar y validar inputs, revisar propuestas, editar ajustes discrecionales, resolver excepciones, verificar destinatarios y aprobar el ciclo.
+No se compraron créditos adicionales, no se utilizó una API paga y los extends consumidos estaban incluidos/disponibles en la cuenta. Por lo tanto, el **desembolso marginal de caja observado para ejecutar estas tres corridas fue 0**.
 
-La Corrida 2 incorpora una intervención humana real: edición manual de `Discretionary Adjustment %` para A001. Sin embargo, no se cronometró esa intervención ni el resto de las tareas del usuario, por lo que no se asigna un costo horario ficticio.
+Esto no significa que el sistema tenga costo económico total cero. La suscripción existente, el equipo, el tiempo humano, el desarrollo, el mantenimiento, la seguridad y eventuales excesos de uso son costos distintos.
 
-Para una implementación operativa futura deberían registrarse minutos por rol y actividad, cantidad de excepciones y retrabajos, y una tasa interna autorizada. Sólo entonces sería válido comparar el proceso asistido contra un baseline manual y calcular ahorro, ROI o payback.
+No se convierte retrospectivamente el uso de Codex en un supuesto costo API por token: las corridas no fueron facturadas como llamadas API y no existe una tarifa por token observada para ese uso incluido que permita imputar un importe real por corrida sin introducir una hipótesis externa.
 
-## 4. Costo por corrida y proyección operativa
+En consecuencia:
 
-Con la evidencia disponible no existe un costo por token verificable por corrida. Sí existe un dato de caja observado: las tres corridas consumieron únicamente capacidad incluida en la cuenta y no generaron desembolso incremental. Por eso:
+- **Costo marginal de caja observado — Corrida 1:** 0.
+- **Costo marginal de caja observado — Corrida 2:** 0.
+- **Costo marginal de caja observado — Corrida 3:** 0.
+- **Costo marginal total observado:** 0.
 
-- **costo marginal de caja observado por las tres corridas:** 0;
-- **costo marginal de caja promedio observado por corrida:** 0 / 3 = **0**;
-- esta cifra no incluye suscripción fija, tiempo humano, equipo ni mantenimiento.
+Los tokens sí se informan porque fueron medidos; el precio por token no se inventa.
 
-El workflow corresponde a un proceso de Compensation por ciclo, no a una tarea semanal. Para cumplir la proyección solicitada sin disfrazar una cadencia inexistente, se usa un escenario explícito:
+## 3. Workflow determinístico
 
-- hipótesis: **1 ciclo salarial por año**;
-- por ciclo: una operación `generate` y al menos una `consolidate`; pueden existir reintentos ante devoluciones rechazadas, como ocurrió en Corrida 2;
-- bajo el mismo esquema observado —Codex desktop dentro de los límites incluidos y sin comprar créditos— el **desembolso marginal de caja proyectado es 0 por ciclo y 0 por año**;
-- su **equivalente semanal anualizado** es `0 / 52 = 0` de costo marginal de caja por semana;
-- ese valor semanal es sólo una equivalencia matemática de la proyección anual, **no significa que el proceso se ejecute semanalmente**;
-- la proyección deja de ser válida si se compran créditos, se usa API paga, aumenta el volumen o se incorpora infraestructura adicional.
+Python y Node realizan localmente el cálculo salarial, generación y protección de Excel, controles de integridad, budgets y consolidación. La interfaz no llama a una API LLM para hacer los cálculos. El salario final no depende de razonamiento numérico libre del modelo: el agente coordina y la herramienta determinística es la fuente autoritativa para porcentajes, redondeos, caps, budgets y validaciones.
 
-Si en producción se adopta otra frecuencia, debe recalcularse con la frecuencia real y los costos efectivamente observados.
+En el dataset DEMO el subprocess local tarda segundos por ejecución. No se transforma esa duración en un costo monetario porque no se midieron CPU, energía, amortización del equipo ni una tarifa de infraestructura separada.
 
-## 5. Elección del modelo
+## 4. Costo humano
 
-El criterio es utilizar **el modelo más liviano que pueda coordinar la tarea de manera confiable**, porque el modelo no necesita resolver la matemática salarial. Sus funciones son interpretar la solicitud, elegir la operación (`verify`, `generate` o `consolidate`), invocar la herramienta, leer una salida estructurada, explicar excepciones y detenerse cuando se requiere intervención humana.
+El costo humano probablemente sea más relevante que el costo marginal del modelo en este caso. Incluye preparar y validar inputs, revisar propuestas, editar ajustes discrecionales, resolver excepciones, verificar destinatarios y aprobar el ciclo.
 
-El usuario informa que las corridas se realizaron con la configuración **GPT-6 Astra Light** de Codex desktop. Esa elección es coherente con el criterio anterior: una configuración `Light` resultó suficiente para coordinar tres ejecuciones reales, incluida una falla y su posterior reejecución con V4.1, mientras los controles críticos permanecieron en código determinístico.
+La Corrida 2 incorpora una intervención humana real: edición manual de `Discretionary Adjustment %` para A001. No se cronometró esa intervención ni el resto de las tareas del usuario, por lo que no se asigna un costo horario ficticio.
 
-No se afirma que `GPT-6 Astra Light` sea el mínimo absoluto posible porque no se hizo un benchmark controlado contra otros modelos. La conclusión respaldada por la evidencia es más acotada: **no fue necesario utilizar deliberadamente un modelo más pesado para que el workflow ejecutara y documentara correctamente estas corridas**.
+Para una implementación operativa futura deberían registrarse minutos por rol y actividad, cantidad de excepciones y retrabajos, y una tasa interna autorizada. Recién entonces sería válido comparar el proceso asistido contra un baseline manual y calcular ahorro, ROI o payback.
 
-## 6. Método para una medición futura con API o usage expuesto
+## 5. Proyección operativa: semana y año
 
-Si el sistema se migrara a un entorno que expone uso facturable, cada llamada debería registrar modelo, timestamp, input tokens, cached input tokens, output tokens, retries y precio oficial aplicable en esa fecha. Para precios por millón de tokens:
+Este workflow corresponde a un ciclo de Compensation, no a una operación semanal. Para satisfacer la proyección económica sin inventar una cadencia artificial se explicita la hipótesis:
 
-`costo_llamada = (input_no_cacheado × precio_input + input_cacheado × precio_cached + output × precio_output) / 1.000.000`
+- **frecuencia de planificación:** 1 ciclo salarial por año;
+- un ciclo normal requiere al menos una operación `generate` y una `consolidate`;
+- pueden existir reintentos cuando una devolución se rechaza, como ocurrió en Corrida 2;
+- el ciclo observado de prueba, incluyendo ese rechazo y posterior reintento, utilizó **6.805.636 tokens de turno** en total;
+- bajo el mismo esquema observado —Codex desktop dentro de uso incluido, sin créditos adicionales ni API paga— el **desembolso marginal de caja proyectado es 0 por ciclo y 0 por año**;
+- expresado como promedio semanal de caja dentro de esa hipótesis anual, el costo marginal sigue siendo **0 por semana**. Esta equivalencia no significa que el proceso se ejecute semanalmente.
 
-Cuando el proveedor incluya cached tokens dentro de input total:
+La proyección deja de ser válida si se compran créditos, se migra a una API paga, aumenta la frecuencia o el uso supera los límites incluidos. En ese caso deben utilizarse el consumo medido del nuevo entorno y su tarifa efectiva.
+
+No se anualizan los 6,8 millones de tokens como si fueran una demanda estable sin advertencia: ese valor proviene de una única experiencia final que además incluyó documentación extensa y un retry por una falla real.
+
+## 6. Elección del modelo
+
+El criterio del curso es utilizar **el modelo más chico que hace bien la tarea**. En este sistema el modelo no necesita resolver la matemática salarial: interpreta la solicitud, selecciona `verify`, `generate` o `consolidate`, invoca la herramienta, lee la salida estructurada, comunica excepciones y detiene/escalona cuando corresponde.
+
+La metadata de los tres turnos registra **`gpt-6-astra` con `effort: low`**. Esa configuración coordinó exitosamente las tres corridas, incluida una corrida rechazada y la posterior consolidación con V4.1, mientras la lógica crítica permaneció en código determinístico.
+
+No se afirma que sea el mínimo absoluto posible porque no se realizó un benchmark controlado frente a modelos menores. La conclusión respaldada por evidencia es: **no fue necesario elevar el effort ni delegar los cálculos críticos al modelo para que el workflow funcionara**.
+
+## 7. Cómo mediría el sistema si se migrara a uso facturable
+
+Si el sistema se migrara a un entorno con tarifa por token, cada llamada debería registrar modelo, timestamp, input total, cached input, output, retries y precio oficial aplicable en esa fecha.
+
+Si el proveedor incluye cached tokens dentro de input total:
 
 `input_no_cacheado = input_total - input_cacheado`
+
+Para precios por millón:
+
+`costo_llamada = (input_no_cacheado × precio_input + input_cacheado × precio_cached + output × precio_output) / 1.000.000`
 
 Luego:
 
@@ -77,8 +95,13 @@ Luego:
 
 `proyeccion_anual = suma(costo_medido_por_tipo × frecuencia_anual_documentada_por_tipo)`
 
-La fuente de precios, moneda, fecha y modalidad deben conservarse junto a la corrida. Hasta contar con esa evidencia, una estimación de tokens o tarifa puede presentarse únicamente como escenario hipotético, nunca como costo real medido.
+La fuente de precios, moneda, fecha y modalidad deben conservarse junto con la evidencia. Una tarifa hipotética puede usarse para un escenario, pero debe rotularse como estimación y no confundirse con el costo observado de estas corridas.
 
 ## Conclusión económica
 
-Para las tres corridas documentadas, el dato económico real disponible es simple: **no hubo desembolso incremental por uso del modelo**. La limitación es igualmente clara: el host no expuso tokens ni usage metadata, por lo que no existe un costo por token verificable de estas corridas. La proyección anual y su equivalente semanal se construyen únicamente sobre el costo marginal de caja observado, no sobre una falsa estimación de tokens. El diseño reduce la necesidad de un modelo pesado al delegar la lógica salarial a herramientas determinísticas, pero el beneficio económico total sólo podría demostrarse midiendo tiempo humano, retrabajo y costos operativos contra un proceso manual comparable.
+Ahora existen dos datos económicos verificables que antes faltaban:
+
+1. **consumo de tokens por turno** para cada una de las tres corridas;
+2. **desembolso incremental observado = 0**, porque el trabajo se realizó dentro del uso disponible de Codex desktop y no mediante API paga o créditos comprados.
+
+La principal limitación remanente es de atribución: los tokens cubren el turno completo de coordinación y no pueden separarse de manera verificable entre contexto, herramientas, documentación y el subprocess salarial. Esa limitación se declara en lugar de fabricar una precisión inexistente.
