@@ -642,7 +642,28 @@
       ]
     }
   },
-  "master_sha256": "f246daa7b05a7f2e589635a602a22aa503ae46f883d8f949c7acc69c15bd7bd3",
+  "parameters_source": {
+    "path": "..\\..\\inputs\\Parameters.xlsx",
+    "path_base": "manifest_directory",
+    "sha256": "8a23238cd3916de4049e27335ea1f229cad6bc4ecd4cea35bd6b39e5af63d5bc",
+    "parsed_parameters": {
+      "General_Increase": 0.08,
+      "Promotion_Increase": 0.15,
+      "Progression_Increase": 0.07,
+      "Population_Scope": "Fuera de convenio",
+      "Exclude_Leaders_V1": "YES",
+      "Discretionary_Min_Pct": -0.05,
+      "Discretionary_Max_Pct": 0.05,
+      "Leadership_Budget_Pct": 0.2
+    },
+    "parsed_team_budgets": {
+      "Team Alpha": 0.28,
+      "Team Beta": 0.18,
+      "Team Gamma": 0.1,
+      "Leadership": 0.2
+    }
+  },
+  "master_sha256": "e0234ab69043bf02296ac8ae41c92ceb62a26a775fbe9e19508f5a0265cb13f2",
   "sources": {
     "inputs\\Employees_Input.xlsx": "ffbe3de403520874924bd4a696e3a78a5a76dfbc46790ab668248e03c64af628",
     "inputs\\Market_Data.xlsx": "8c49c32e823ed0a788421cc7d535845cf1efe8a688b3b2d9b0e202efebf56079",

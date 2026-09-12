@@ -67,12 +67,16 @@ def at_x(employee, x, rounded=True):
         market = min(pct(market), gap.quantize(STEP, rounding=ROUND_FLOOR))
     raw_salary = base * (1 + e['Protected_Increase_Pct'] + merit + market)
     final_salary = salary(raw_salary) if rounded else raw_salary
+    if rounded and market > 0 and ref and final_salary > ref:
+        while market > 0 and final_salary > ref:
+            market = max(ZERO, market - STEP)
+            final_salary = salary(base * (1 + e['Protected_Increase_Pct'] + merit + market))
+        if final_salary > ref:
+            raise ValueError('MARKET_CAP_ROUNDING_CONFLICT: ' + e['Employee_ID'])
     e.update(X=x, Merit_Increase_Pct=merit, Market_Weight=mw,
              Market_Increase_Pct=market, New_Salary=final_salary,
              Total_Increase_Pct=pct(D(final_salary) / base - 1),
              Final_Compa_Ratio=D(final_salary) / ref if ref else None)
-    if rounded and market > 0 and ref and final_salary > ref and before <= ref:
-        e['Flag'] = ';'.join(filter(None, [e['Flag'], 'MARKET_SALARY_ROUNDING_REVIEW_REQUIRED']))
     return e
 
 

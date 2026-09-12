@@ -12,6 +12,7 @@ import xml.etree.ElementTree as ET
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from engine import D, salary, weight, human_result, at_x
 from workflow import ROOT, load_inputs, calculate_group, generate, consolidate, rows, digest
+from unittest.mock import patch
 
 
 def change_cell(path, sheet, coordinate, value):
@@ -138,7 +139,16 @@ class WorkflowTests(unittest.TestCase):
         for e in final:
             source = persisted_by_id[e['Employee_ID']]
             for key, value in source.items():
-                self.assertEqual(e[key], value)
+                renamed = {'New_Salary': 'Proposed_Salary', 'Total_Increase_Pct': 'Proposed_Increase_Pct', 'Final_Compa_Ratio': 'Proposed_Compa_Ratio'}
+                self.assertEqual(e[renamed.get(key, key)], value)
+            self.assertEqual(e['Final_Compa_Ratio'], D(e['Final_Salary'])/e['WTW_Reference_Salary'] if e['WTW_Reference_Salary'] else None)
+            self.assertNotIn('Human_Final_Compa_Ratio', e)
+        exported = rows(self.base/'valid-final/consolidated_final.xlsx', 'Final')
+        changed = next(e for e in exported if e['Employee_ID']=='A001')
+        self.assertEqual(changed['Proposed Salary'],1923600)
+        self.assertEqual(changed['Final Salary'],1937600)
+        self.assertAlmostEqual(changed['Final Compa Ratio'],1937600/2160000)
+        self.assertAlmostEqual(changed['Proposed Compa Ratio'],1923600/2160000)
         alpha = next(b for b in budgets if b[0]=='Team Alpha')
         self.assertEqual(alpha[4],14000)
         self.assertEqual(alpha[5],11534000)
@@ -190,6 +200,57 @@ class WorkflowTests(unittest.TestCase):
         self.assertEqual(w['Summary']['B11'].value,'EXCEEDED')
         self.assertEqual(w['Detail']['T2'].value,1937600)
         w.close()
+
+    def test_parameters_source_exact_file(self):
+        used = self.base/'custom-parameters.xlsx'
+        shutil.copyfile(ROOT/'inputs/Parameters.xlsx', used)
+        change_cell(used,1,'B9',.21)
+        generated = self.base/'custom-generated'
+        manifest = generate(generated,used,'DEMO-only')
+        source = manifest['parameters_source']
+        self.assertEqual((generated/source['path']).resolve(),used.resolve())
+        self.assertEqual(source['sha256'],digest(used))
+        self.assertNotEqual(source['sha256'],digest(ROOT/'inputs/Parameters.xlsx'))
+        self.assertEqual(source['parsed_parameters']['Leadership_Budget_Pct'],.21)
+        self.assertEqual(source['parsed_parameters'],manifest['parameters'])
+        self.assertEqual(source['parsed_team_budgets'],manifest['budgets'])
+
+    def test_invalid_budget_parameters(self):
+        original_rows = rows
+        for field in ['Team_Budget_Pct','Leadership_Budget_Pct']:
+            for invalid in ['0.2',None,True,float('nan'),float('inf'),float('-inf'),-1,-1.01]:
+                def mocked(path,sheet):
+                    data=original_rows(path,sheet)
+                    if field=='Team_Budget_Pct' and sheet=='Team_Budgets':
+                        data[0][field]=invalid
+                    if field=='Leadership_Budget_Pct' and sheet=='Global_Parameters':
+                        next(r for r in data if r['Parameter']==field)['Value']=invalid
+                    return data
+                with self.subTest(field=field,value=invalid), patch('workflow.rows',side_effect=mocked):
+                    with self.assertRaisesRegex(ValueError,'INVALID_BUDGET_PARAMETER'):
+                        load_inputs(ROOT/'inputs/Parameters.xlsx')
+
+    def test_market_rounding_non_hundred_reference(self):
+        e=dict(self.by_id['A001'],June_Base_Salary=100000,WTW_Reference_Salary=D(110075),Merit_Weight=D(0))
+        result=at_x(e,D('.1'))
+        self.assertEqual(result['Market_Increase_Pct'],D('.0204'))
+        self.assertEqual(result['New_Salary'],110000)
+        self.assertLessEqual(result['New_Salary'],e['WTW_Reference_Salary'])
+        self.assertEqual(result['Merit_Increase_Pct'],0)
+        for k in ['General_Increase_Pct','Promotion_Increase_Pct','Progression_Increase_Pct']:
+            self.assertEqual(result[k],e[k])
+
+    def test_market_rounding_protected_conflict(self):
+        e=dict(self.by_id['A001'],June_Base_Salary=100000,WTW_Reference_Salary=D(108075),
+               Protected_Increase_Pct=D('.0806'),Protected_Salary=D(108060),Merit_Weight=D(0))
+        with self.assertRaisesRegex(ValueError,'MARKET_CAP_ROUNDING_CONFLICT'):
+            at_x(e,D('.1'))
+
+    def test_demo_payrolls_unchanged(self):
+        expected={'Team Alpha':11520000,'Team Beta':10736500,'Team Gamma':9322000,'Leadership':14038500}
+        for group,payroll in expected.items():
+            self.assertEqual(sum(e['New_Salary'] for e in self.manifest['proposals'][group]),payroll)
+            self.assertEqual(sum(human_result(e,0,-.05,.05)['Final_Salary'] for e in self.manifest['proposals'][group]),payroll)
 
 
 if __name__=='__main__':

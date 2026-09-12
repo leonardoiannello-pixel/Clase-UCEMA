@@ -32,6 +32,8 @@ Los archivos `.inspect.ndjson`, si existen localmente, son auxiliares del render
 - X se busca por intervalos de bandas de mercado. El payroll puede caer al cruzar una banda, por lo que una búsqueda binaria global no es válida. Dentro de cada intervalo se usa búsqueda binaria reproducible, luego el redondeo y reducción de X en pasos de 0,01 puntos porcentuales exigidos por V3.
 - Importes se calculan con `Decimal`; salarios se redondean al múltiplo de ARS 100 más cercano, empate hacia arriba. Tasas se almacenan como fracciones con cuatro decimales (dos decimales porcentuales); compa-ratios se muestran con tres decimales.
 - El salario propuesto y el porcentaje efectivo propuesto se conservan por separado. La etapa humana aplica exactamente `ROUND(Proposed Increase % + Discretionary Adjustment %,4)` y `ROUND(June Salary*(1+Final Increase %),-2)`.
+- En el consolidado, `Proposed Salary`, `Proposed Increase %` y `Proposed Compa Ratio` identifican la propuesta original. `Final Compa Ratio` corresponde al `Final Salary` posterior al ajuste humano. Las estructuras internas usan `Proposed_Salary`, `Proposed_Increase_Pct`, `Proposed_Compa_Ratio` y `Final_Compa_Ratio`, sin el alias ambiguo `Human_Final_Compa_Ratio`.
+- Si Market positivo hace que el salario redondeado supere mercado, se reduce sólo Market en pasos de 0,01 puntos porcentuales. Si aun con Market cero no se puede cumplir, se genera `MARKET_CAP_ROUNDING_CONFLICT`; no se alteran mérito ni componentes protegidos.
 - El floor verifica tanto el porcentaje protegido como el salario protegido redondeado según V3. No se recortan ni compensan componentes protegidos. Un valor inválido se rechaza al consolidar; no se sustituye silenciosamente por otro.
 - Excel aplica validación de datos a R y fórmulas defensivas: si pegar datos evita la validación, los importes finales muestran error y Budget Status pasa a `INVALID`. El exceso de budget por un ajuste válido sí está permitido y muestra `EXCEEDED`.
 - `Discretionary Adjustment Amount` = payroll final menos payroll propuesto, incluyendo efecto del redondeo. `Budget Utilization %` = payroll final / máximo payroll. `Budget Remaining` conserva el signo negativo cuando hay exceso.
@@ -50,6 +52,10 @@ En `v4/inputs/Parameters.xlsx`, hoja `Global_Parameters`:
 | `Leadership_Budget_Pct` | 20,00% | Independiente de los equipos, requiere aprobación de negocio |
 
 Estos valores sólo permiten ejecutar la demostración y no constituyen recomendaciones. Los parámetros originales se copian sin cambiar sus valores; los tres inputs históricos permanecen intactos. La contraseña llega por `SALARY_REVIEW_PASSWORD` o `--password`. La demostración y los tests usan únicamente `DEMO-only`, sin secretos reales.
+
+`Team_Budget_Pct` y `Leadership_Budget_Pct` deben ser valores numéricos finitos y mayores que -100%. Se rechazan también booleanos y texto numérico con `INVALID_BUDGET_PARAMETER`.
+
+El manifest registra `parameters_source`: path del Parameters utilizado relativo al directorio del manifest (`path_base=manifest_directory`), SHA256 de ese archivo exacto, parámetros globales y budgets parseados. Esto incluye un Parameters alternativo recibido por `--parameters`, no solamente el input histórico.
 
 ## Ejecución reproducible
 
@@ -86,7 +92,7 @@ La consolidación válida se entrega como `PENDING_HUMAN_APPROVAL`, incluso si t
 
 ## Validación y resultados
 
-La suite incluye 15 pruebas: regresión de todos los campos históricos, exclusión y mapping de líderes, protección de todas las hojas, única columna editable, floor, límites/precisión/tipos, bandas/cap/mercado faltante, Gamma insuficiente, redondeo ARS 100, consolidación y conservación de la propuesta, manipulación de salarios y fórmulas, archivos faltantes, pegado inválido, ajuste cero y recálculo real de fórmulas exportadas con Artifact Tool.
+La suite incluye 20 pruebas aprobadas: las 15 existentes y cinco nuevas para hash del Parameters alternativo, budgets inválidos, cap con referencia no múltiplo de 100, conflicto con el piso protegido y payrolls DEMO invariables. La prueba de consolidación también verifica los nombres exportados y que el compa-ratio final use el salario posterior al ajuste. Se mantienen regresión de todos los campos históricos, exclusión y mapping de líderes, protección de todas las hojas, única columna editable, floor, límites/precisión/tipos, bandas/cap/mercado faltante, Gamma insuficiente, redondeo ARS 100, conservación de la propuesta, manipulación de salarios y fórmulas, archivos faltantes, pegado inválido, ajuste cero y recálculo de fórmulas exportadas con Artifact Tool.
 
 | Pool | X | Payroll propuesto y final DEMO | Máximo | Remanente | Estado |
 |---|---:|---:|---:|---:|---|
@@ -103,7 +109,7 @@ Se procesan 15 empleados y 3 líderes separados. En el test A001 recibe +1 punto
 2. Definir aprobación final, identidad autenticada, permisos, entrega/recepción y eventual registro de firma. No se automatiza esa aprobación en esta entrega.
 3. Resolver reglas para varios revisores por pool y X sin máximo finito antes de incorporar esos casos.
 4. Con otros salarios, recalcular un porcentaje efectivo de dos decimales puede cambiar el salario aun con ajuste cero. V4 respeta la fórmula solicitada y registra `PROPOSAL_RATE_ROUNDTRIP_REVIEW_REQUIRED`; no altera V3. No ocurre en los 18 registros actuales.
-5. Una referencia de mercado no múltiplo de ARS 100 podría entrar en tensión con el redondeo del salario. Se informa `MARKET_SALARY_ROUNDING_REVIEW_REQUIRED` sin cambiar silenciosamente las reglas V3. No ocurre en la muestra.
+5. El cap posterior al redondeo ahora se resuelve reduciendo Market. El caso sintético de referencia ARS 110.075 queda en ARS 110.000 con Market 2,04%; si el piso impide resolverlo, se detiene con excepción explícita. Los payrolls DEMO y resultados históricos V3 permanecen iguales.
 6. Validar usabilidad y recálculo en la versión de Excel del destinatario antes de un ciclo real. No hay cifrado, HRIS ni envío automático.
 
 Desviaciones respecto del pedido: V3 sólo existía como especificación y evidencia, por lo que hubo que implementar su motor; no fue posible importar un motor Python preexistente. La aprobación permanece humana y pendiente, sin ejecutar una decisión de negocio. La protección usa una extensión OOXML por falta de esa capacidad en el renderer. Ninguna de estas decisiones modifica la historia V1–V3.

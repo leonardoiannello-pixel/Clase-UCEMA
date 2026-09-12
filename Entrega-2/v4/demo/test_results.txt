@@ -11,17 +11,32 @@ Inspect result written to file: <temporary-test-directory>\original\master_propo
 consolidated_final.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
 Inspect result written to file: <temporary-test-directory>\valid-final\consolidated_final.xlsx.inspect.ndjson
 test_consolidation_preserves_original_and_budgets (test_workflow.WorkflowTests.test_consolidation_preserves_original_and_budgets) ... ok
+test_demo_payrolls_unchanged (test_workflow.WorkflowTests.test_demo_payrolls_unchanged) ... ok
 {"kind":"table","sheet":"Summary","address":"A4:B11","rows":8,"cols":2,"values":[["Team Payroll June",9000000],["Maximum Payroll / Budget",11520000],["Proposed Payroll",11520000],["Discretionary Adjustment Amount",14000],["Final Payroll",11534000],["Budget Remaining",-14000],["Budget Utilization %",1.0012152777777779],["Budget Status","EXCEEDED"]]}
 Inspect result written to file: <temporary-test-directory>\excel-check.xlsx.inspect.ndjson
 test_excel_recalculation_after_edit (test_workflow.WorkflowTests.test_excel_recalculation_after_edit) ... ok
 test_formula_tamper_rejected (test_workflow.WorkflowTests.test_formula_tamper_rejected) ... ok
 test_gamma_exception_preserved (test_workflow.WorkflowTests.test_gamma_exception_preserved) ... ok
+test_invalid_budget_parameters (test_workflow.WorkflowTests.test_invalid_budget_parameters) ... ok
 test_leaders_excluded_and_mapping (test_workflow.WorkflowTests.test_leaders_excluded_and_mapping) ... ok
 test_limits_precision_and_nonfinite (test_workflow.WorkflowTests.test_limits_precision_and_nonfinite) ... ok
 test_market_bands_and_cap (test_workflow.WorkflowTests.test_market_bands_and_cap) ... ok
+test_market_rounding_non_hundred_reference (test_workflow.WorkflowTests.test_market_rounding_non_hundred_reference) ... ok
+test_market_rounding_protected_conflict (test_workflow.WorkflowTests.test_market_rounding_protected_conflict) ... ok
 test_missing_review_rejected (test_workflow.WorkflowTests.test_missing_review_rejected) ... ok
 test_negative_protected_floor (test_workflow.WorkflowTests.test_negative_protected_floor) ... ok
 test_only_adjustment_editable (test_workflow.WorkflowTests.test_only_adjustment_editable) ... ok
+team_L-A.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: <temporary-test-directory>\custom-generated\team_L-A.xlsx.inspect.ndjson
+leadership_review.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: <temporary-test-directory>\custom-generated\leadership_review.xlsx.inspect.ndjson
+team_L-B.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: <temporary-test-directory>\custom-generated\team_L-B.xlsx.inspect.ndjson
+team_L-C.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: <temporary-test-directory>\custom-generated\team_L-C.xlsx.inspect.ndjson
+master_proposal.xlsx {"kind":"notice","message":"Cell search matched 0 entries."}
+Inspect result written to file: <temporary-test-directory>\custom-generated\master_proposal.xlsx.inspect.ndjson
+test_parameters_source_exact_file (test_workflow.WorkflowTests.test_parameters_source_exact_file) ... ok
 test_pasted_invalid_adjustment_rejected (test_workflow.WorkflowTests.test_pasted_invalid_adjustment_rejected) ... ok
 test_salary_rounding (test_workflow.WorkflowTests.test_salary_rounding) ... ok
 test_unauthorized_change_rejected_and_logged (test_workflow.WorkflowTests.test_unauthorized_change_rejected_and_logged) ... ok
@@ -29,6 +44,6 @@ test_v3_regression_all_fields (test_workflow.WorkflowTests.test_v3_regression_al
 test_zero_adjustment_retains_synthetic_salaries (test_workflow.WorkflowTests.test_zero_adjustment_retains_synthetic_salaries) ... ok
 
 ----------------------------------------------------------------------
-Ran 15 tests in 7.023s
+Ran 20 tests in 9.657s
 
 OK

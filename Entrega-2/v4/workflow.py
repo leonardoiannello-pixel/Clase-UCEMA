@@ -42,14 +42,24 @@ def rows(path, sheet):
     return [dict(zip(values[0], row)) for row in values[1:] if row[0] is not None]
 
 
+def budget_parameter(value, name):
+    if isinstance(value, bool) or not isinstance(value, (int, float, Decimal)):
+        raise ValueError('INVALID_BUDGET_PARAMETER: ' + name)
+    value = D(value)
+    if not value.is_finite() or value <= -1:
+        raise ValueError('INVALID_BUDGET_PARAMETER: ' + name)
+    return value
+
+
 def load_inputs(parameters):
     p = {r['Parameter']: r['Value'] for r in rows(parameters, 'Global_Parameters')}
-    for key in ['Discretionary_Min_Pct', 'Discretionary_Max_Pct', 'Leadership_Budget_Pct']:
+    for key in ['Discretionary_Min_Pct', 'Discretionary_Max_Pct']:
         if key not in p or not D(p[key]).is_finite():
             raise ValueError('Missing/invalid parameter: ' + key)
     if not D(p['Discretionary_Min_Pct']) <= 0 <= D(p['Discretionary_Max_Pct']):
         raise ValueError('Discretionary interval must include zero')
-    budgets = {r['Team']: D(r['Team_Budget_Pct']) for r in rows(parameters, 'Team_Budgets')}
+    leadership_budget = budget_parameter(p.get('Leadership_Budget_Pct'), 'Leadership_Budget_Pct')
+    budgets = {r['Team']: budget_parameter(r['Team_Budget_Pct'], 'Team_Budget_Pct: ' + r['Team']) for r in rows(parameters, 'Team_Budgets')}
     market = {r['Market_Job_Code']: r['WTW_Reference_Salary'] for r in rows(ROOT.parent / 'inputs/Market_Data.xlsx', 'Market_Data')}
     source = rows(ROOT.parent / 'inputs/Employees_Input.xlsx', 'Employees')
     ids = [r['Employee_ID'] for r in source]
@@ -75,7 +85,7 @@ def load_inputs(parameters):
     for name, records in groups.items():
         if len({e['Leader_Employee_ID'] for e in records}) != 1:
             raise ValueError('Multiple reviewers per budget pool need an explicit allocation decision: ' + name)
-    budgets['Leadership'] = D(p['Leadership_Budget_Pct'])
+    budgets['Leadership'] = leadership_budget
     return p, budgets, groups
 
 
@@ -165,6 +175,9 @@ def generate(output, parameters, password):
         protect(output / filename, password, editable=filename in files)
     original_files = list((ROOT.parent / 'inputs').glob('*.xlsx')) + list((ROOT.parent / 'runs/run_3_v3/outputs').glob('*.xlsx'))
     manifest = dict(schema=1, parameters=p, budgets=budgets, proposals=proposals, files=files,
+                    parameters_source=dict(path=os.path.relpath(Path(parameters).resolve(), output.resolve()),
+                                           path_base='manifest_directory', sha256=digest(parameters),
+                                           parsed_parameters=p, parsed_team_budgets=budgets),
                     master_sha256=digest(output / 'master_proposal.xlsx'),
                     sources={str(f.relative_to(ROOT.parent)): digest(f) for f in original_files},
                     snapshots={filename: snapshot(output / filename) for filename in files})
@@ -230,8 +243,10 @@ def consolidate(original, reviewed, output, password):
         for e in records:
             human = human_result(e, adjustments[e['Employee_ID']], m['parameters']['Discretionary_Min_Pct'], m['parameters']['Discretionary_Max_Pct'])
             final_payroll += human['Final_Salary']
-            # Preserve original Final_Compa_Ratio under its original key too.
-            final_rows.append({**e, **{('Human_' + k if k == 'Final_Compa_Ratio' else k): v for k, v in human.items()}, 'Reviewer_ID': e['Leader_Employee_ID'], 'Approval_Status': 'PENDING_HUMAN_APPROVAL'})
+            proposal_names = {'New_Salary': 'Proposed_Salary', 'Total_Increase_Pct': 'Proposed_Increase_Pct',
+                              'Final_Compa_Ratio': 'Proposed_Compa_Ratio'}
+            proposal = {proposal_names.get(k, k): v for k, v in e.items()}
+            final_rows.append({**proposal, **human, 'Reviewer_ID': e['Leader_Employee_ID'], 'Approval_Status': 'PENDING_HUMAN_APPROVAL'})
         june = sum(D(e['June_Base_Salary']) for e in records)
         maximum = june * (1 + m['budgets'][group])
         proposed = sum(e['New_Salary'] for e in records)
@@ -240,7 +255,10 @@ def consolidate(original, reviewed, output, password):
         if status == 'EXCEEDED':
             events.append({'group': group, 'flag': 'BUDGET_EXCEEDED', 'amount': final_payroll-maximum})
     headers = list(final_rows[0])
-    render({'consolidated_final.xlsx': {'sheets': [dict(name='Final', rows=[headers] + [[e.get(k) for k in headers] for e in final_rows], formulas={}),
+    display_names = {'Proposed_Salary': 'Proposed Salary', 'Proposed_Increase_Pct': 'Proposed Increase %',
+                     'Proposed_Compa_Ratio': 'Proposed Compa Ratio', 'Discretionary_Adjustment_Pct': 'Discretionary Adjustment %',
+                     'Final_Increase_Pct': 'Final Increase %', 'Final_Salary': 'Final Salary', 'Final_Compa_Ratio': 'Final Compa Ratio'}
+    render({'consolidated_final.xlsx': {'sheets': [dict(name='Final', rows=[[display_names.get(k, k) for k in headers]] + [[e.get(k) for k in headers] for e in final_rows], formulas={}),
             dict(name='Budgets', rows=[['Pool', 'Team Payroll June', 'Maximum Payroll / Budget', 'Proposed Payroll', 'Discretionary Adjustment Amount', 'Final Payroll', 'Budget Remaining', 'Budget Utilization %', 'Budget Status', 'Approval Status']] + budget_rows, formulas={})]}}, output)
     protect(output / 'consolidated_final.xlsx', password, editable=False)
     write_json(output / 'validation_exceptions.json', dict(state='PENDING_HUMAN_APPROVAL', errors=[], reviewed_files=events,
